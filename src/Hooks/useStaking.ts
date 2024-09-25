@@ -1,39 +1,48 @@
 import { useEffect, useState } from 'react';
-import { useAccount, useConnect, useDisconnect } from 'wagmi';
+import { useAccount, useConnect, useDisconnect, useWalletClient } from 'wagmi';
 import { useRecoilState } from 'recoil';
-import { createPublicClient, fallback, http } from 'viem';
-import { polygon } from 'viem/chains';
-import { parseUnits, formatUnits } from 'viem';
+import { parseUnits, formatUnits, getContract, Abi } from 'viem';
 import MoondogStakingAbi from '../Assets/Abis/MoondogStaking.json';
 import { stakingAmountState, tokenBalanceState } from '../State';
-import { chain, contractRpcUrl, WagmiConfig } from '../config';
+import { chain, contractRpcUrl, veimClient, wagmiConfig } from '../config';
 
-const STAKING_CONTRACT_ADDRESS = 'YOUR_STAKING_CONTRACT_ADDRESS';
-const TOKEN_CONTRACT_ADDRESS = 'YOUR_TOKEN_CONTRACT_ADDRESS';
+export const useVeimWalletClient = (address: `0x${string}`, abi: Abi) => {
+  const { data: walletClient } = useWalletClient();
+
+  const contract = getContract({
+    address,
+    abi,
+    client: {
+      public: veimClient,
+      wallet: walletClient,
+    },
+  });
+
+  return contract ? contract : null;
+};
 
 const useStaking = () => {
-  const { address, isConnected } = useAccount({ config: WagmiConfig });
+  const { address, isConnected } = useAccount();
   const { connect, connectors } = useConnect();
-  const disconnect = useDisconnect();
+  const { disconnect } = useDisconnect();
 
   const [amount, setAmount] = useState<string>('');
   const [stakeAmount, setStakeAmount] = useRecoilState(stakingAmountState);
   const [tokenBalance, setTokenBalance] = useRecoilState(tokenBalanceState);
 
-  const client = createPublicClient({
-    chain: chain,
-    transport: fallback([http(contractRpcUrl)]),
-  });
-
   // const stake = async (amount: string) => {
   //   if (!isConnected || !address || !amount) return;
 
-  //   const tx = await client.sendTransaction({
-  //     to: STAKING_CONTRACT_ADDRESS,
-  //     data: '0x' + MoondogStakingAbi.encodeFunctionData('stake', [parseUnits(amount, 18)]),
-  //   });
-  //   await client.waitForTransaction(tx);
-  //   fetchStakeAmount();
+  //   try {
+  //     const tx = await veimClient.sendTransaction({
+  //       to: STAKING_CONTRACT_ADDRESS,
+  //       data: '0x' + MoondogStakingAbi.encodeFunctionData('stake', [parseUnits(amount, 18)]),
+  //     });
+  //     await veimClient.waitForTransaction(tx);
+  //     await fetchStakeAmount(); // Update stake amount after staking
+  //   } catch (error) {
+  //     console.error('Error staking:', error);
+  //   }
   // };
 
   // const unstake = async (amount: string) => {
@@ -80,10 +89,11 @@ const useStaking = () => {
   // }, [isConnected, address]);
 
   return {
+    address,
     isConnected,
+    connectors,
     connect,
     disconnect,
-    // connectors,
     // stake: () => stake(amount),
     // unstake: () => unstake(amount),
     // stakeAmount,

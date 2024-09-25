@@ -1,9 +1,8 @@
 import { useNavigate } from 'react-router-dom';
-import { useAccount, useConnect, useDisconnect } from 'wagmi';
-import { injected } from 'wagmi/connectors';
 import Button from '../../Components/Button';
 import PageLayout from '../../Components/PageLayout';
 import useStaking from '../../Hooks/useStaking';
+import ConnectMyWallet from '../../Components/ConnectMyWallet';
 
 const MainDashboard: React.FC = () => {
   const { isConnected, connect } = useStaking();
@@ -27,15 +26,8 @@ const MainDashboard: React.FC = () => {
         <div className="row-span-2 col-span-1 bg-blue-500 p-4 text-white text-center">
           <div className="grid grid-rows-4 grid-cols-4">
             {/* Connect my wallet */}
-            <div className="col-span-4">
-              {isConnected === true ? (
-                <div>Connected</div>
-              ) : (
-                <>
-                  <Button label={'Connect my wallet'} onClick={() => connect({ connector: injected() })} />
-                  <Button label={'Test'} onClick={() => console.log(isConnected)} />
-                </>
-              )}
+            <div className="col-span-4 flex justify-center items-center">
+              <ConnectMyWallet />
             </div>
             {/* Enter Tokens Amount */}
             <div className="col-span-4">
