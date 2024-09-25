@@ -6,12 +6,13 @@ import { polygon } from 'viem/chains';
 import { parseUnits, formatUnits } from 'viem';
 import MoondogStakingAbi from '../Assets/Abis/MoondogStaking.json';
 import { stakingAmountState, tokenBalanceState } from '../State';
+import { chain, contractRpcUrl, WagmiConfig } from '../config';
 
 const STAKING_CONTRACT_ADDRESS = 'YOUR_STAKING_CONTRACT_ADDRESS';
 const TOKEN_CONTRACT_ADDRESS = 'YOUR_TOKEN_CONTRACT_ADDRESS';
 
 const useStaking = () => {
-  const { address, isConnected } = useAccount();
+  const { address, isConnected } = useAccount({ config: WagmiConfig });
   const { connect, connectors } = useConnect();
   const disconnect = useDisconnect();
 
@@ -20,8 +21,8 @@ const useStaking = () => {
   const [tokenBalance, setTokenBalance] = useRecoilState(tokenBalanceState);
 
   const client = createPublicClient({
-    chain: polygon,
-    transport: fallback([http('https://YOUR_INFURA_OR_ALCHEMY_URL')]),
+    chain: chain,
+    transport: fallback([http(contractRpcUrl)]),
   });
 
   // const stake = async (amount: string) => {
