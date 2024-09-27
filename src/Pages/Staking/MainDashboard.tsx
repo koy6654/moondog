@@ -10,7 +10,7 @@ import { totalStakedRecoil, userAvailableMoondogRecoil, userStakingAmountRecoil 
 import axios from 'axios';
 import BigNumber from 'bignumber.js';
 import { useAccount } from 'wagmi';
-import { stakingContractAddress, veimWalletClient } from '../../config';
+import { stakingContractAddress } from '../../config';
 import Alert, { AlertProps } from '../../Components/Alert';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 
@@ -18,7 +18,7 @@ const MainDashboard: React.FC = () => {
   const { address, isConnected } = useAccount();
 
   const { getBalance, allowance, approve } = useToken();
-  const { connect, disconnect, staking, unstaking, getTotalStaking, getUserStakingAmount } = useStaking();
+  const { staking, unstaking, getTotalStaking, getUserStakingAmount } = useStaking();
 
   const [totalStaked, setTotalStaked] = useRecoilState(totalStakedRecoil);
   const [userAvailableMoondog, setUserAvailableMoondog] = useRecoilState(userAvailableMoondogRecoil);
@@ -33,9 +33,6 @@ const MainDashboard: React.FC = () => {
 
   const onClickStaking = async () => {
     setLoading(true);
-
-    const test = await veimWalletClient.getAddresses();
-    console.log(test);
 
     if (isConnected === false) {
       setLoading(false);
@@ -112,8 +109,11 @@ const MainDashboard: React.FC = () => {
   const getTvlAndTotalStaked = async () => {
     const total = (await getTotalStaking()) ?? '0';
     const totalString = new BigNumber(total).toString();
-    const { data: usdPrice } = await axios.get<string>(`https://info.puggy.world/usd`);
+
+    const { data: usdPrice } = await axios.get<string>(`http://43.216.121.155:9000/api/token/setStart`);
+
     const tvl = new BigNumber(usdPrice).multipliedBy(totalString).toString();
+
     setTotalStaked(totalString);
     setTvl(tvl);
   };
@@ -129,13 +129,6 @@ const MainDashboard: React.FC = () => {
 
     setUserAvailableMoondog(availableMoondog);
     setUserStakingAmount(stakingAmount);
-  };
-
-  const disconnectWallet = () => {
-    disconnect();
-
-    setUserAvailableMoondog('0');
-    setUserStakingAmount('0');
   };
 
   useEffect(() => {

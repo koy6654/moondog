@@ -3,25 +3,7 @@ import { useAccount, useConnect, useDisconnect, useWalletClient } from 'wagmi';
 import { useRecoilState } from 'recoil';
 import { parseUnits, formatUnits, getContract, Abi, Hash } from 'viem';
 
-import {
-  userAccountAddressRecoil,
-  userTotalStakedRecoil,
-  userAvailableMoondogRecoil,
-  userStakingAmountRecoil,
-  userReceivedRecoil,
-  userRewardRecoil,
-  userClaimRecoil,
-  totalStakedRecoil,
-} from '../State';
-import {
-  chain,
-  contractRpcUrl,
-  getVeimContract,
-  stakingContractAddress,
-  veimPublicClient,
-  veimWalletClient,
-  wagmiConfig,
-} from '../config';
+import { getVeimContract, stakingContractAddress, veimPublicClient } from '../config';
 import moondogStakingAbi from '../Assets/Abis/MoondogStaking.json';
 import { DECIMAL } from '../Constants';
 
@@ -44,20 +26,8 @@ const truncateToFixed = (value: string) => {
 };
 
 const useStaking = () => {
-  const { address } = useAccount();
   const { connect, connectors } = useConnect();
   const { disconnect } = useDisconnect();
-
-  const [amount, setAmount] = useState<string>('');
-
-  const [userAccountAddress, setUserAccountAddress] = useRecoilState(userAccountAddressRecoil);
-  const [userTotalStaked, setUserTotalStaked] = useRecoilState(userTotalStakedRecoil);
-  const [userAvailableMoondog, setUserAvailableMoondog] = useRecoilState(userAvailableMoondogRecoil);
-  const [userStakingAmount, setUserStakingAmount] = useRecoilState(userStakingAmountRecoil);
-  const [userReceived, setUserReceived] = useRecoilState(userReceivedRecoil);
-  const [userReward, setUserReward] = useRecoilState(userRewardRecoil);
-  const [userClaim, setUserClaim] = useRecoilState(userClaimRecoil);
-  const [totalStaked, setTotalStaked] = useRecoilState(totalStakedRecoil);
 
   const contract = getVeimContract(stakingContractAddress, moondogStakingAbi.abi as Abi);
 
@@ -86,12 +56,12 @@ const useStaking = () => {
           });
         }
       } catch (error: any) {
-        const errorMessage = error.message || error.toString();
-        const firstLine = errorMessage.split('\n')[0];
-        console.error(error.toString());
+        const errorMessage = error.toString();
+        console.error(errorMessage);
+
         resolve({
           res: false,
-          error: firstLine,
+          error: errorMessage,
         });
       }
     });
@@ -114,11 +84,12 @@ const useStaking = () => {
         data,
       };
     } catch (error: any) {
-      const firstLine = error.message || error.toString().split('\n')[0];
-      console.error(error.toString());
+      const errorMessage = error.toString();
+      console.error(errorMessage);
+
       return {
         res: false,
-        error: firstLine,
+        error: errorMessage,
       };
     }
   };
@@ -128,6 +99,7 @@ const useStaking = () => {
     if (result.res) {
       return result.data;
     }
+
     return null;
   };
 
@@ -136,6 +108,7 @@ const useStaking = () => {
     if (result.res) {
       return result.data;
     }
+
     return null;
   };
 
@@ -144,6 +117,7 @@ const useStaking = () => {
     if (result.res) {
       return result.data;
     }
+
     return result;
   };
 
@@ -152,6 +126,7 @@ const useStaking = () => {
     if (result.res) {
       return result.data;
     }
+
     return null;
   };
 
@@ -160,6 +135,7 @@ const useStaking = () => {
     if (result.res) {
       return result.data;
     }
+
     return null;
   };
 
@@ -168,6 +144,7 @@ const useStaking = () => {
     if (result.res) {
       return result.data;
     }
+
     return null;
   };
 
@@ -176,47 +153,9 @@ const useStaking = () => {
     if (result.res) {
       return result.data;
     }
+
     return null;
   };
-
-  // const publicData = async () => {
-  //   const resGetTotalStaking = await getTotalStaking();
-  //   setTotalState(resGetTotalStaking.token);
-  //   if (resGetTotalStaking) return true;
-  // };
-
-  // const userReadData = async () => {
-  //   const resGetUserStakingAmount = await getUserStakingAmount(userAddress);
-  //   setUserTotalStaked(resGetUserStakingAmount.token);
-
-  //   const userReward = await getUserReward(userAddress);
-  //   setUserReward(userReward.token);
-
-  //   const userClaim = await getUserClaim(userAddress);
-  //   setUserClaim(userClaim.token);
-
-  //   await readData();
-
-  //   const totalStatekd = await publicData();
-
-  //   if (resGetUserStakingAmount && userReward && totalStatekd) {
-  //     return true;
-  //   }
-  // };
-  // const initUserDataFn = () => {
-  //   setUserTotalStaked(0);
-  //   //setTotalState(0);
-  //   setUserReward(0);
-  //   setUserClaim(0);
-  // };
-
-  // useEffect(() => {
-  //   if (userAddress != null) {
-  //     setStateUserAddress(userAddress);
-  //     userReadData();
-  //   }
-  //   publicData();
-  // }, [userAddress]);
 
   return {
     connectors,
@@ -228,12 +167,6 @@ const useStaking = () => {
     getUserClaim,
     staking,
     unstaking,
-    // stake: () => stake(amount),
-    // unstake: () => unstake(amount),
-    // stakeAmount,
-    // tokenBalance,
-    // setAmount,
-    // amount,
   };
 };
 

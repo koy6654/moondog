@@ -1,10 +1,74 @@
 import { http, createConfig } from 'wagmi';
 import { Chain, bsc, bscTestnet } from 'wagmi/chains';
 // import { injected, metaMask, safe, walletConnect } from 'wagmi/connectors';
-// import { getDefaultConfig } from 'connectkit';
 import { Abi, Hash, createPublicClient, createWalletClient, fallback, getContract } from 'viem';
-import { getDefaultConfig, RainbowKitProvider } from '@rainbow-me/rainbowkit';
-
+import { injected, metaMask, safe, walletConnect } from '@wagmi/connectors';
+import { connectorsForWallets, getDefaultConfig, RainbowKitProvider } from '@rainbow-me/rainbowkit';
+import {
+  rainbowWallet,
+  walletConnectWallet,
+  metaMaskWallet,
+  injectedWallet,
+  safeWallet,
+} from '@rainbow-me/rainbowkit/wallets';
+import {
+  argentWallet,
+  bestWallet,
+  bifrostWallet,
+  binanceWallet,
+  bitgetWallet,
+  bitskiWallet,
+  bitverseWallet,
+  bloomWallet,
+  braveWallet,
+  bybitWallet,
+  clvWallet,
+  coin98Wallet,
+  coinbaseWallet,
+  compassWallet,
+  coreWallet,
+  dawnWallet,
+  desigWallet,
+  enkryptWallet,
+  foxWallet,
+  frameWallet,
+  frontierWallet,
+  gateWallet,
+  imTokenWallet,
+  iopayWallet,
+  kaiaWallet,
+  kaikasWallet,
+  krakenWallet,
+  kresusWallet,
+  ledgerWallet,
+  magicEdenWallet,
+  mewWallet,
+  nestWallet,
+  oktoWallet,
+  okxWallet,
+  omniWallet,
+  oneInchWallet,
+  oneKeyWallet,
+  paraSwapWallet,
+  phantomWallet,
+  rabbyWallet,
+  ramperWallet,
+  roninWallet,
+  safeheronWallet,
+  safepalWallet,
+  seifWallet,
+  subWallet,
+  tahoWallet,
+  talismanWallet,
+  tokenPocketWallet,
+  tokenaryWallet,
+  trustWallet,
+  uniswapWallet,
+  valoraWallet,
+  xdefiWallet,
+  zealWallet,
+  zerionWallet,
+} from '@rainbow-me/rainbowkit/wallets';
 export const environment = process.env.REACT_APP_ENVIRONMENT;
 export const projectId = process.env.REACT_APP_CONTRACT_PROJECT_ID;
 export const apiKey = process.env.REACT_APP_CONTRACT_API_KEY;
@@ -30,38 +94,90 @@ if (environment === 'prod') {
   contractRpcUrl = `https://bnb-testnet.g.alchemy.com/v2/${apiKey}`;
 }
 
-// export const wagmiConfig = createConfig(
-//   getDefaultConfig({
-//     chains: [chain],
-//     transports: {
-//       [chain.id]: http(contractRpcUrl),
-//     },
-//     walletConnectProjectId: projectId,
-//     appName: 'Moondog Staking',
+const connectors = connectorsForWallets(
+  [
+    {
+      groupName: 'Recommended',
+      wallets: [walletConnectWallet, metaMaskWallet, injectedWallet, coinbaseWallet, safeWallet],
+    },
+    {
+      groupName: 'Else',
+      wallets: [
+        argentWallet,
+        bestWallet,
+        bifrostWallet,
+        binanceWallet,
+        bitgetWallet,
+        bitskiWallet,
+        bitverseWallet,
+        bloomWallet,
+        braveWallet,
+        bybitWallet,
+        clvWallet,
+        coin98Wallet,
+        compassWallet,
+        coreWallet,
+        dawnWallet,
+        desigWallet,
+        enkryptWallet,
+        foxWallet,
+        frameWallet,
+        frontierWallet,
+        gateWallet,
+        imTokenWallet,
+        iopayWallet,
+        kaiaWallet,
+        kaikasWallet,
+        krakenWallet,
+        kresusWallet,
+        ledgerWallet,
+        magicEdenWallet,
+        metaMaskWallet,
+        mewWallet,
+        nestWallet,
+        oktoWallet,
+        okxWallet,
+        omniWallet,
+        oneInchWallet,
+        oneKeyWallet,
+        paraSwapWallet,
+        phantomWallet,
+        rabbyWallet,
+        ramperWallet,
+        rainbowWallet,
+        roninWallet,
+        safeheronWallet,
+        safepalWallet,
+        seifWallet,
+        subWallet,
+        tahoWallet,
+        talismanWallet,
+        tokenPocketWallet,
+        tokenaryWallet,
+        trustWallet,
+        uniswapWallet,
+        valoraWallet,
+        xdefiWallet,
+        zealWallet,
+        zerionWallet,
+      ],
+    },
+  ],
+  {
+    appName: 'Moondog',
+    projectId: projectId,
+  }
+);
 
-//     // connectors: [injected(), walletConnect({ projectId }), metaMask(), safe()],
-
-//     // // Optional App Info
-//     // appDescription: "Your App Description",
-//     // appUrl: "https://family.co", // your app's url
-//     // appIcon: "https://family.co/logo.png", // your app's icon, no bigger than 1024x1024px (max. 1MB)
-//   })
-// );
-export const wagmiConfig = getDefaultConfig({
+export const wagmiConfig = createConfig({
   chains: [chain],
   transports: {
     [chain.id]: http(contractRpcUrl),
   },
-  projectId,
-  appName: 'Moondog Staking',
-
-  // connectors: [injected(), walletConnect({ projectId }), metaMask(), safe()],
-
-  // // Optional App Info
-  // appDescription: "Your App Description",
-  // appUrl: "https://family.co", // your app's url
-  // appIcon: "https://family.co/logo.png", // your app's icon, no bigger than 1024x1024px (max. 1MB)
+  connectors,
 });
+
+export const wagmiWalletConnectors = [injected(), walletConnect({ projectId }), metaMask(), safe()];
 
 export const veimPublicClient = createPublicClient({
   chain: chain,

@@ -43,13 +43,12 @@ const useToken = () => {
         token,
       };
     } catch (error: any) {
-      const errorMessage = error.message || error.toString();
-      const firstLine = errorMessage.split('\n')[0];
-      console.error(firstLine);
+      const errorMessage = error.toString();
+      console.error(errorMessage);
 
       return {
         res: false,
-        error: firstLine,
+        error: errorMessage,
       };
     }
   };
@@ -60,6 +59,7 @@ const useToken = () => {
         const hash = await contract.write.approve([spendAddress, parseUnits(amount.toString(), DECIMAL)], {
           account: address,
         });
+
         const transaction = await veimPublicClient.waitForTransactionReceipt({
           hash,
         });
@@ -71,33 +71,21 @@ const useToken = () => {
           });
         }
       } catch (error: any) {
-        const errorMessage = error.message || error.toString();
-        const firstLine = errorMessage.split('\n')[0];
-        console.error(error.toString());
+        const errorMessage = error.toString();
+        console.error(errorMessage);
 
         resolve({
           res: environment === 'dev' ? true : false,
-          error: firstLine,
+          error: errorMessage,
         });
       }
     });
   };
 
-  // const initUserDataFn = () => {
-  //   setUserAvailableMoondog('0');
-  // };
-
-  // useEffect(() => {
-  //   if (ownerAddress) {
-  //     getUserAvailableBalance();
-  //   }
-  // }, [ownerAddress]);
-
   return {
     getBalance,
     allowance,
     approve,
-    // initUserDataFn,
   };
 };
 
