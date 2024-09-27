@@ -1,1 +1,1 @@
-export const DECIMAL = 4;
+export const DECIMAL = 18;

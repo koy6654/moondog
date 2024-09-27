@@ -1,18 +1,21 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 //import { useRecoilValue } from "recoil";
 
-import WalletButton from "../context/WalletButton";
+import WalletButton from '../context/WalletButton';
 
-import PubLicData from "./PublicData";
-import StakeBtn from "./StakeBtn";
+import PubLicData from './PublicData';
+import StakeBtn from './StakeBtn';
 
 export default function IntroCenter() {
-  const [amount, setAmount] = useState("");
+  const [amount, setAmount] = useState('');
 
   const onChange = (event) => {
-    if (event.target.value >= 0) setAmount(event.target.value);
+    const newValue = event.target.value;
+    if (newValue >= 0 && newValue !== amount) {
+      setAmount(newValue);
+    }
   };
 
   return (
@@ -21,13 +24,15 @@ export default function IntroCenter() {
         <WalletButton />
       </div>
 
-      <div className="text-left w-full py-4 mt-2 text-white font-termina-test text-xs md:text-sm">Enter Tokens Amount</div>
+      <div className="text-left w-full py-4 mt-2 text-white font-termina-test text-xs md:text-sm">
+        Enter Tokens Amount
+      </div>
       <input
         onChange={onChange}
         value={amount}
         type="number"
         className="my-4 font-termina-test w-full rounded-lg focus:outline-none pl-2 py-2 text-lg"
-        placeholder={amount == "" ? "0.00" : ""}
+        placeholder={amount == '' ? '0.00' : ''}
       />
 
       <PubLicData />

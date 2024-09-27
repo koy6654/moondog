@@ -1,41 +1,41 @@
-import { atom } from "recoil";
+import { atom } from 'recoil';
 
 export const userAccountAddress = atom({
-  key: "UserAccountAddress",
+  key: 'UserAccountAddress',
   default: null,
 });
 
 export const userTotalStakedRecoil = atom({
-  key: "UserTotalStaked",
+  key: 'UserTotalStaked',
   default: null,
 });
 
 export const userAvailablePuggyRecoil = atom({
-  key: "UserAvailablePuggyRecoil",
+  key: 'UserAvailablePuggyRecoil',
   default: null,
 });
 
 export const userStakingAmountRecoil = atom({
-  key: "UserStakingAmountRecoil",
+  key: 'UserStakingAmountRecoil',
   default: null,
 });
 
 export const userReceivedRecoil = atom({
-  key: "UserStakingReceivedRecoil",
+  key: 'UserStakingReceivedRecoil',
   default: null,
 });
 
 export const userRewardRecoil = atom({
-  key: "UserStakingRewardRecoil",
+  key: 'UserStakingRewardRecoil',
   default: null,
 });
 
 export const userClaimRecoil = atom({
-  key: "UserStakingClaimRecoil",
+  key: 'UserStakingClaimRecoil',
   default: null,
 });
 
 export const totalStakedRecoil = atom({
-  key: "TotalStaked",
+  key: 'TotalStaked',
   default: null,
 });
