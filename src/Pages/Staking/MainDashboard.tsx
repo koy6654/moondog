@@ -9,10 +9,13 @@ import { useRecoilState } from 'recoil';
 import { totalStakedRecoil, userAvailableMoondogRecoil, userStakingAmountRecoil } from '../../State';
 import axios from 'axios';
 import BigNumber from 'bignumber.js';
-import { useAccount } from 'wagmi';
+import { useAccount, useBalance, useReadContract, useWaitForTransactionReceipt } from 'wagmi';
 import { stakingContractAddress } from '../../config';
 import Alert, { AlertProps } from '../../Components/Alert';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { Hash } from 'viem';
+import ConnectWalletButton from '../../Components/ConnectWalletButton';
+import PageTitle from '../../Components/PageTitle';
 
 const MainDashboard: React.FC = () => {
   const { address, isConnected } = useAccount();
@@ -30,10 +33,11 @@ const MainDashboard: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState<AlertProps>({ type: null, message: '' });
   const [enterTokensAmount, setEnterTokensAmount] = useState('');
+  const [stakingHash, setStakingHash] = useState<Hash | undefined>(undefined);
+  const { status: waitForTransactionReceiptStatus } = useWaitForTransactionReceipt({ hash: stakingHash });
 
   const onClickStaking = async () => {
     setLoading(true);
-
     if (isConnected === false) {
       setLoading(false);
       setAlert({ type: 'warning', message: 'Need to connect my wallet' });
@@ -54,36 +58,30 @@ const MainDashboard: React.FC = () => {
       return;
     }
 
-    const allowanceGreaterThenZero = new BigNumber(allowanceToken).gt(0);
-    const allowanceGreaterThenOrEqualAmount = new BigNumber(allowanceToken).gte(enterTokensAmount);
-    if (allowanceGreaterThenZero && allowanceGreaterThenOrEqualAmount) {
-      const result = await staking(enterTokensAmount);
-      if (result == null) {
-        setLoading(false);
-        setAlert({ type: 'error', message: 'Staking failed' });
-        return;
-      }
-    } else {
-      const approveResult = (await approve(stakingContractAddress, enterTokensAmount)).res;
-      if (approveResult === true) {
-        const result = await staking(enterTokensAmount);
-        if (result == null) {
-          setLoading(false);
-          setAlert({ type: 'error', message: 'Staking failed' });
-          return;
-        }
+    try {
+      const allowanceGreaterThenZero = new BigNumber(allowanceToken).gt(0);
+      const allowanceGreaterThenOrEqualAmount = new BigNumber(allowanceToken).gte(enterTokensAmount);
+      if (allowanceGreaterThenZero && allowanceGreaterThenOrEqualAmount) {
+        await staking(enterTokensAmount);
       } else {
-        setLoading(false);
-        setAlert({ type: 'error', message: 'Invalid approve' });
-        return;
+        await approve(stakingContractAddress, enterTokensAmount);
+        await staking(enterTokensAmount);
       }
+    } catch (err) {
+      console.error(err);
+      setLoading(false);
+      setAlert({ type: 'error', message: 'Transaction failed' });
+      return;
     }
 
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+
+    await getTvlAndTotalStaked();
     await getAvailableMoondogAndStakingAmount();
 
-    setLoading(false);
     setEnterTokensAmount('');
     setAlert({ type: 'success', message: 'Done' });
+    setLoading(false);
   };
 
   const onClickUnstaking = async () => {
@@ -95,14 +93,22 @@ const MainDashboard: React.FC = () => {
 
     setLoading(true);
 
-    const result = await unstaking(enterTokensAmount);
-    if (result == null) {
+    try {
+      await unstaking(enterTokensAmount);
+    } catch (error: any) {
+      console.error(error.toString());
+
       setAlert({ type: 'error', message: 'Unstaking failed' });
+      setLoading(false);
     }
 
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+
+    await getTvlAndTotalStaked();
     await getAvailableMoondogAndStakingAmount();
 
     setEnterTokensAmount('');
+    setAlert({ type: 'success', message: 'Done' });
     setLoading(false);
   };
 
@@ -133,35 +139,23 @@ const MainDashboard: React.FC = () => {
 
   useEffect(() => {
     getTvlAndTotalStaked();
-  }, [tvl, totalStaked]);
-
-  useEffect(() => {
     getAvailableMoondogAndStakingAmount();
-  }, [isConnected]);
-
-  useEffect(() => {
-    if (alert.type != null) {
-      const timer = setTimeout(() => {
-        setAlert({ type: null, message: '' });
-      }, 3000);
-      clearTimeout(timer);
-    }
-  }, [alert]);
+  }, [tvl, totalStaked, isConnected, stakingHash]);
 
   return (
     <PageLayout>
       <div className="h-full grid grid-rows-3 grid-cols-2 gap-4">
         {/* Header */}
-        <div className="col-span-2 bg-blue-500 p-4 text-white text-center">
-          <h1 className="text-2xl">“Stake Your $moondog to play - Sip the Moonshine, Earn the Rewards!”</h1>
+        <div className="col-span-2 p-4 text-black text-center">
+          <PageTitle title={'Sip the $MOONDOG, Earn the Rewards!'} />
         </div>
 
         {/* Wallet */}
-        <div className="row-span-2 col-span-1 bg-blue-500 p-4 text-white text-center">
+        <div className="row-span-2 col-span-1 p-4 text-black text-center .shape-rectangle">
           <div className="grid grid-rows-4 grid-cols-4">
             {/* Connect my wallet */}
             <div className="col-span-4 flex justify-center items-center">
-              <ConnectButton label={'Connect My Wallet'} />
+              <ConnectWalletButton />
             </div>
             {/* Enter Tokens Amount */}
             <div className="col-span-4">
@@ -210,7 +204,7 @@ const MainDashboard: React.FC = () => {
         </div>
 
         {/* Game preview */}
-        <div className="col-span-1 bg-blue-500 p-4 text-white text-center">
+        <div className="col-span-1 p-4 text-black text-center">
           <div>Game preview</div>
           <div>
             <Button label={'Play Moondog Game'} onClick={() => navigate('/game')} />
@@ -218,7 +212,7 @@ const MainDashboard: React.FC = () => {
         </div>
 
         {/* Leaderboard */}
-        <div className="col-span-1 bg-blue-500 p-4 text-white text-center">
+        <div className="col-span-1 p-4 text-black text-center">
           <div>Leaderboard</div>
           <div>Ranking</div>
         </div>

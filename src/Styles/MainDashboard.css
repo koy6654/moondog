@@ -1,0 +1,88 @@
+:root {
+  --interactivemedium: rgba(148, 220, 216, 1);
+  --linedark: rgba(0, 0, 0, 1);
+  --linemedium: rgba(115, 120, 130, 1);
+  --script-l-font-family: 'Marker Felt', Helvetica;
+  --script-l-font-size: 29px;
+  --script-l-font-weight: 400;
+  --script-m-font-family: 'Marker Felt', Helvetica;
+  --script-m-font-size: 22px;
+  --script-m-font-weight: 100;
+  --script-s-font-family: 'Marker Felt', Helvetica;
+  --script-s-font-size: 17px;
+  --script-s-font-weight: 100;
+}
+
+.shape-rectangle {
+  background-color: #ffffff99;
+  height: 752px;
+  position: relative;
+  width: 910px;
+}
+
+.shape-rectangle .border {
+  height: 759px;
+  left: -4px;
+  position: absolute;
+  top: -3px;
+  width: 918px;
+}
+
+.connect-wallet {
+  align-items: center;
+  display: flex;
+  gap: 16px;
+  height: 98px;
+  justify-content: center;
+  padding: 17.5px 20px;
+  position: relative;
+  width: 816px;
+  background-color: #e25858;
+  border: 3px solid black;
+  border-radius: 4px;
+}
+
+.connect-wallet .label-and-icons {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  height: 29px;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.connect-wallet .label-wrapper {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: -3.5px;
+  margin-top: -3.5px;
+  padding: 0px 16px;
+  position: relative;
+}
+
+.connect-wallet .button {
+  all: unset;
+  box-sizing: border-box;
+  color: var(--linedark);
+  font-family: var(--script-m-font-family);
+  font-size: var(--script-m-font-size);
+  font-weight: var(--script-m-font-weight);
+  line-height: 36px;
+  white-space: nowrap;
+  width: fit-content;
+  cursor: pointer;
+}
+
+.connect-wallet .shape {
+  height: 105px;
+  left: -4px;
+  object-fit: cover;
+  position: absolute;
+  top: -2px;
+  width: 825px;
+  z-index: 0;
+}

@@ -6,8 +6,7 @@ import { RecoilRoot } from 'recoil';
 import { wagmiConfig } from './config';
 import { WagmiProvider } from 'wagmi';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-// import { ConnectKitProvider } from 'connectkit';
-import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
+import { RainbowKitProvider, Theme, lightTheme } from '@rainbow-me/rainbowkit';
 import '@rainbow-me/rainbowkit/styles.css';
 
 const queryClient = new QueryClient();

@@ -4,10 +4,24 @@ import { useState, useEffect } from 'react';
 import { parseUnits, formatUnits, Hash, Abi } from 'viem';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import moondogTokenAbi from '../Assets/Abis/MoondogCoin.json';
-import { environment, getVeimContract, tokenContractAddress, veimPublicClient } from '../config';
+import {
+  contractRpcUrl,
+  environment,
+  getVeimPublicContract,
+  stakingContractAddress,
+  tokenContractAddress,
+  veimPublicClient,
+} from '../config';
 import { DECIMAL } from '../Constants';
 import { userAvailableMoondogRecoil } from '../State';
-import { useAccount } from 'wagmi';
+import {
+  useAccount,
+  useReadContract,
+  useTransactionReceipt,
+  useWaitForTransactionReceipt,
+  useWalletClient,
+  useWriteContract,
+} from 'wagmi';
 
 interface ContractResult {
   res: boolean;
@@ -18,11 +32,22 @@ interface ContractResult {
 const useToken = () => {
   const { address } = useAccount();
 
-  const contract = getVeimContract(tokenContractAddress, moondogTokenAbi.abi as Abi);
+  const { data: writeContractHash, writeContractAsync } = useWriteContract();
+
+  const publicContract = getVeimPublicContract(tokenContractAddress, moondogTokenAbi.abi as Abi);
+  const walletContract = async (functionName: string, args: any) => {
+    return await writeContractAsync({
+      address: tokenContractAddress,
+      abi: moondogTokenAbi.abi,
+      functionName,
+      args,
+      account: address,
+    });
+  };
 
   const getBalance = async () => {
     try {
-      const balance = (await contract.read.balanceOf([address])) as bigint;
+      const balance = (await publicContract.read.balanceOf([address])) as bigint;
       let data = parseFloat(formatUnits(balance, DECIMAL)).toFixed(1);
 
       return data;
@@ -35,7 +60,7 @@ const useToken = () => {
 
   const allowance = async (spendAddress: Hash) => {
     try {
-      const allowanceResult = (await contract.read.allowance([address, spendAddress])) as bigint;
+      const allowanceResult = (await publicContract.read.allowance([address, spendAddress])) as bigint;
       let token = formatUnits(allowanceResult, DECIMAL);
 
       return {
@@ -53,33 +78,9 @@ const useToken = () => {
     }
   };
 
-  const approve = async (spendAddress: Hash, amount: string): Promise<ContractResult> => {
-    return new Promise(async (resolve, reject) => {
-      try {
-        const hash = await contract.write.approve([spendAddress, parseUnits(amount.toString(), DECIMAL)], {
-          account: address,
-        });
-
-        const transaction = await veimPublicClient.waitForTransactionReceipt({
-          hash,
-        });
-
-        if (transaction && transaction.status === 'success') {
-          resolve({
-            res: true,
-            data: hash,
-          });
-        }
-      } catch (error: any) {
-        const errorMessage = error.toString();
-        console.error(errorMessage);
-
-        resolve({
-          res: environment === 'dev' ? true : false,
-          error: errorMessage,
-        });
-      }
-    });
+  const approve = async (spendAddress: Hash, amount: string): Promise<Hash> => {
+    const hash = await walletContract('approve', [spendAddress, parseUnits(amount.toString(), DECIMAL)]);
+    return hash;
   };
 
   return {

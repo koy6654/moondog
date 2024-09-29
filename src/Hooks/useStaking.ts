@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { useAccount, useConnect, useDisconnect, useWalletClient } from 'wagmi';
+import { useAccount, useConnect, useDisconnect, useWalletClient, useWriteContract } from 'wagmi';
 import { useRecoilState } from 'recoil';
 import { parseUnits, formatUnits, getContract, Abi, Hash } from 'viem';
 
-import { getVeimContract, stakingContractAddress, veimPublicClient } from '../config';
+import { getVeimPublicContract, stakingContractAddress, veimPublicClient } from '../config';
 import moondogStakingAbi from '../Assets/Abis/MoondogStaking.json';
 import { DECIMAL } from '../Constants';
 
@@ -26,44 +26,19 @@ const truncateToFixed = (value: string) => {
 };
 
 const useStaking = () => {
+  const { address } = useAccount();
   const { connect, connectors } = useConnect();
   const { disconnect } = useDisconnect();
+  const { data: writeContractHash, writeContractAsync } = useWriteContract();
 
-  const contract = getVeimContract(stakingContractAddress, moondogStakingAbi.abi as Abi);
-
-  const contractWrite = async ({ functionCall, inputVal }: ContractParams): Promise<ContractResult> => {
-    return new Promise(async (resolve, reject) => {
-      try {
-        let data: Hash;
-        if (inputVal != undefined) {
-          data = await functionCall([parseUnits(inputVal.toString(), DECIMAL)]);
-        } else {
-          data = await functionCall();
-        }
-        const transaction = await veimPublicClient.waitForTransactionReceipt({
-          hash: data,
-        });
-
-        if (transaction.status === 'success') {
-          resolve({
-            res: true,
-            data,
-          });
-        } else {
-          resolve({
-            res: false,
-            error: 'contract call fail',
-          });
-        }
-      } catch (error: any) {
-        const errorMessage = error.toString();
-        console.error(errorMessage);
-
-        resolve({
-          res: false,
-          error: errorMessage,
-        });
-      }
+  const publicContract = getVeimPublicContract(stakingContractAddress, moondogStakingAbi.abi as Abi);
+  const walletContract = async (functionName: string, args: any) => {
+    return await writeContractAsync({
+      address: stakingContractAddress,
+      abi: moondogStakingAbi.abi,
+      functionName,
+      args,
+      account: address,
     });
   };
 
@@ -95,34 +70,21 @@ const useStaking = () => {
   };
 
   const staking = async (stakingAmount: string) => {
-    const result = await contractWrite({ functionCall: contract.write.staking, inputVal: stakingAmount });
-    if (result.res) {
-      return result.data;
-    }
-
-    return null;
+    const hash = await walletContract('staking', [parseUnits(stakingAmount.toString(), DECIMAL)]);
+    return hash;
   };
 
   const unstaking = async (unstakingAmount: string) => {
-    const result = await contractWrite({ functionCall: contract.write.unStaking, inputVal: unstakingAmount });
-    if (result.res) {
-      return result.data;
-    }
-
-    return null;
+    const hash = await walletContract('unStaking', [parseUnits(unstakingAmount.toString(), DECIMAL)]);
+    return hash;
   };
 
   const claim = async () => {
-    const result = await contractWrite({ functionCall: contract.write.rewardClaim });
-    if (result.res) {
-      return result.data;
-    }
-
-    return result;
+    await walletContract('rewardClaim', []);
   };
 
   const getTotalStaking = async () => {
-    const result = await contractRead({ functionCall: contract.read.getTotalStaking });
+    const result = await contractRead({ functionCall: publicContract.read.getTotalStaking });
     if (result.res) {
       return result.data;
     }
@@ -131,7 +93,7 @@ const useStaking = () => {
   };
 
   const getUserStakingAmount = async (address: Hash | undefined) => {
-    const result = await contractRead({ functionCall: contract.read.getUserStakingAmount, inputVal: address });
+    const result = await contractRead({ functionCall: publicContract.read.getUserStakingAmount, inputVal: address });
     if (result.res) {
       return result.data;
     }
@@ -140,7 +102,7 @@ const useStaking = () => {
   };
 
   const getUserReward = async (address: Hash | undefined) => {
-    const result = await contractRead({ functionCall: contract.read.getUserClaimedReward, inputVal: address });
+    const result = await contractRead({ functionCall: publicContract.read.getUserClaimedReward, inputVal: address });
     if (result.res) {
       return result.data;
     }
@@ -149,7 +111,7 @@ const useStaking = () => {
   };
 
   const getUserClaim = async (address: Hash | undefined) => {
-    const result = await contractRead({ functionCall: contract.read.getUserReward, inputVal: address });
+    const result = await contractRead({ functionCall: publicContract.read.getUserReward, inputVal: address });
     if (result.res) {
       return result.data;
     }

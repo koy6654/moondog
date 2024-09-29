@@ -6,7 +6,17 @@ export interface AlertProps {
 }
 
 const Alert: React.FC<AlertProps> = ({ type, message }) => {
-  if (!type) return null;
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setVisible(false);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (!visible || !type) return null;
 
   const alertStyles = {
     success: 'bg-green-100 border border-green-400 text-green-700',

@@ -4,6 +4,7 @@ import CloudSquare2 from '../../Assets/Images/cloud_square.png';
 import CloudSquare3 from '../../Assets/Images/cloud_square.png';
 import CloudSquare4 from '../../Assets/Images/cloud_square.png';
 import CloudSquare5 from '../../Assets/Images/cloud_square.png';
+import PageTitle from '../../Components/PageTitle';
 
 const images = [CloudSquare1, CloudSquare2, CloudSquare3, CloudSquare4, CloudSquare5];
 
@@ -13,7 +14,7 @@ const Rewards: React.FC = () => {
       <div className="h-full grid grid-rows-3 grid-cols-4 gap-4">
         {/* Header */}
         <div className="row-span-1 col-span-4 p-4 text-center">
-          <h1 className="text-2xl">“Moondog Rewards Meter”</h1>
+          <PageTitle title={'Put your $MOONDOG to work'} />
         </div>
 
         {/* Images */}

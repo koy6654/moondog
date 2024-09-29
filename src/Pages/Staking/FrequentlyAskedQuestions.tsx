@@ -1,4 +1,5 @@
 import PageLayout from '../../Components/PageLayout';
+import PageTitle from '../../Components/PageTitle';
 
 const FrequentlyAskedQuestions: React.FC = () => {
   return (
@@ -7,7 +8,7 @@ const FrequentlyAskedQuestions: React.FC = () => {
       <div className="h-full grid grid-rows-3 grid-cols-2 gap-4">
         {/* Header */}
         <div className="col-span-2 bg-blue-500 p-4 text-white text-center">
-          <h1 className="text-2xl">“Stake Your $moondog to play - Sip the Moonshine, Earn the Rewards!”</h1>
+          <PageTitle title={'FAQ'} />
         </div>
 
         {/* Wallet */}

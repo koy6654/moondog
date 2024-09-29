@@ -1,4 +1,4 @@
-import { http, createConfig } from 'wagmi';
+import { http, createConfig, createStorage, cookieStorage, useWalletClient, UseWalletClientReturnType } from 'wagmi';
 import { Chain, bsc, bscTestnet } from 'wagmi/chains';
 // import { injected, metaMask, safe, walletConnect } from 'wagmi/connectors';
 import { Abi, Hash, createPublicClient, createWalletClient, fallback, getContract } from 'viem';
@@ -175,28 +175,21 @@ export const wagmiConfig = createConfig({
     [chain.id]: http(contractRpcUrl),
   },
   connectors,
+  storage: createStorage({
+    storage: cookieStorage,
+  }),
 });
-
-export const wagmiWalletConnectors = [injected(), walletConnect({ projectId }), metaMask(), safe()];
 
 export const veimPublicClient = createPublicClient({
   chain: chain,
   transport: fallback([http(contractRpcUrl)]),
 });
 
-export const veimWalletClient = createWalletClient({
-  chain: chain,
-  transport: fallback([http(contractRpcUrl)]),
-});
-
-export const getVeimContract = (contractAddress: Hash, abi: Abi) => {
+export const getVeimPublicContract = (contractAddress: Hash, abi: Abi) => {
   const contract = getContract({
     address: contractAddress,
     abi,
-    client: {
-      public: veimPublicClient,
-      wallet: veimWalletClient,
-    },
+    client: veimPublicClient,
   });
 
   if (contract == null) {
