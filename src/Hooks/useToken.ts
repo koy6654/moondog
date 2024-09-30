@@ -1,38 +1,15 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import { parseUnits, formatUnits, Hash, Abi } from 'viem';
-import { useRecoilState, useRecoilValue } from 'recoil';
 import moondogTokenAbi from '../Assets/Abis/MoondogCoin.json';
-import {
-  contractRpcUrl,
-  environment,
-  getVeimPublicContract,
-  stakingContractAddress,
-  tokenContractAddress,
-  veimPublicClient,
-} from '../config';
+import { getVeimPublicContract, tokenContractAddress } from '../config';
 import { DECIMAL } from '../Constants';
-import { userAvailableMoondogRecoil } from '../State';
-import {
-  useAccount,
-  useReadContract,
-  useTransactionReceipt,
-  useWaitForTransactionReceipt,
-  useWalletClient,
-  useWriteContract,
-} from 'wagmi';
-
-interface ContractResult {
-  res: boolean;
-  data?: Hash | string;
-  error?: string;
-}
+import { useAccount, useWriteContract } from 'wagmi';
 
 const useToken = () => {
   const { address } = useAccount();
 
-  const { data: writeContractHash, writeContractAsync } = useWriteContract();
+  const { writeContractAsync } = useWriteContract();
 
   const publicContract = getVeimPublicContract(tokenContractAddress, moondogTokenAbi.abi as Abi);
   const walletContract = async (functionName: string, args: any) => {

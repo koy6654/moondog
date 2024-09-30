@@ -1,21 +1,21 @@
 import { useNavigate } from 'react-router-dom';
-import Button from '../../Components/Button';
-import PageLayout from '../../Components/PageLayout';
-import useStaking from '../../Hooks/useStaking';
-import Loading from '../../Components/Loading';
-import useToken from '../../Hooks/useToken';
+import Button from '../../../Components/Button';
+import PageLayout from '../../../Components/PageLayout';
+import useStaking from '../../../Hooks/useStaking';
+import Loading from '../../../Components/Loading';
+import useToken from '../../../Hooks/useToken';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { totalStakedRecoil, userAvailableMoondogRecoil, userStakingAmountRecoil } from '../../State';
+import { totalStakedRecoil, userAvailableMoondogRecoil, userStakingAmountRecoil } from '../../../State';
 import axios from 'axios';
 import BigNumber from 'bignumber.js';
 import { useAccount, useBalance, useReadContract, useWaitForTransactionReceipt } from 'wagmi';
-import { stakingContractAddress } from '../../config';
-import Alert, { AlertProps } from '../../Components/Alert';
-import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { stakingContractAddress } from '../../../config';
+import Alert, { AlertProps } from '../../../Components/Alert';
 import { Hash } from 'viem';
-import ConnectWalletButton from '../../Components/ConnectWalletButton';
-import PageTitle from '../../Components/PageTitle';
+import ConnectWalletButton from '../../../Components/ConnectWalletButton';
+import PageTitle from '../../../Components/PageTitle';
+import Gem from '../../../Assets/Images/Gem.png';
 
 const MainDashboard: React.FC = () => {
   const { address, isConnected } = useAccount();
@@ -144,23 +144,25 @@ const MainDashboard: React.FC = () => {
 
   return (
     <PageLayout>
-      <div className="h-full grid grid-rows-3 grid-cols-2 gap-4">
-        {/* Header */}
-        <div className="col-span-2 p-4 text-black text-center">
+      <div className="h-full grid grid-rows-6 grid-cols-5 gap-4">
+        <div className="row-span-1 col-span-5 p-4 text-black text-center">
           <PageTitle title={'Sip the $MOONDOG, Earn the Rewards!'} />
         </div>
 
         {/* Wallet */}
-        <div className="row-span-2 col-span-1 p-4 text-black text-center .shape-rectangle">
-          <div className="grid grid-rows-4 grid-cols-4">
+        <div className="bg-[#FFFFFF] bg-opacity-50 row-span-5 col-span-3 p-4 text-black text-center .shape-rectangle">
+          <div className="grid grid-rows-4 grid-cols-4 p-5">
             {/* Connect my wallet */}
-            <div className="col-span-4 flex justify-center items-center">
+            <div className="col-span-4 h-20	flex justify-center items-center">
               <ConnectWalletButton />
             </div>
             {/* Enter Tokens Amount */}
             <div className="col-span-4">
-              <div className="flex flex-col mb-4">
-                <div className="text-left w-full text-xs md:text-sm">Enter Tokens Amount</div>
+              <div className="flex flex-col mt-4 mb-4">
+                <div className="flex items-center w-full h-full">
+                  <img src={Gem} alt="Gem" className="h-full" />
+                  <div className="font-concert-one text-left text-2xl">Enter Tokens Amount</div>
+                </div>
                 <input
                   onChange={(event) => {
                     const inputValue = new BigNumber(event.target.value);
@@ -173,7 +175,7 @@ const MainDashboard: React.FC = () => {
                   value={enterTokensAmount}
                   type="number"
                   step="any"
-                  className="text-black w-full rounded-lg focus:outline-none pl-2 py-2 text-lg"
+                  className="w-full bg-white border-2 border-solid border-black rounded-[32px] focus:outline-none font-concert-one text-black text-lg pl-8 p-3"
                   placeholder={'0.00'}
                 />
               </div>
@@ -204,7 +206,7 @@ const MainDashboard: React.FC = () => {
         </div>
 
         {/* Game preview */}
-        <div className="col-span-1 p-4 text-black text-center">
+        <div className="row-span-2 col-span-2 p-4 text-black text-center">
           <div>Game preview</div>
           <div>
             <Button label={'Play Moondog Game'} onClick={() => navigate('/game')} />
@@ -212,7 +214,7 @@ const MainDashboard: React.FC = () => {
         </div>
 
         {/* Leaderboard */}
-        <div className="col-span-1 p-4 text-black text-center">
+        <div className="row-span-3 col-span-2 p-4 text-black text-center">
           <div>Leaderboard</div>
           <div>Ranking</div>
         </div>

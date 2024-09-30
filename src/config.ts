@@ -74,6 +74,7 @@ export const projectId = process.env.REACT_APP_CONTRACT_PROJECT_ID;
 export const apiKey = process.env.REACT_APP_CONTRACT_API_KEY;
 export const tokenContractAddress = process.env.REACT_APP_CONTRACT_TOKEN_ADDRESS as Hash;
 export const stakingContractAddress = process.env.REACT_APP_CONTRACT_STAKING_ADDRESS as Hash;
+export const gameContractAddress = process.env.REACT_APP_CONTRACT_GAME_ADDRESS as Hash;
 if (
   environment == null ||
   projectId == null ||
@@ -193,7 +194,7 @@ export const getVeimPublicContract = (contractAddress: Hash, abi: Abi) => {
   });
 
   if (contract == null) {
-    throw new Error('useVeimContract error');
+    throw new Error('useVeimPublicContract error');
   }
 
   return contract;

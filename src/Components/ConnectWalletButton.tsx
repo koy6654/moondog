@@ -1,7 +1,9 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import React from 'react';
 import shape from './shape.svg';
-import '../Styles/MainDashboard.css';
+import './Components.css';
+import FingerLeft from '../Assets/Images/FingerLeft.png';
+import FingerRight from '../Assets/Images/FingerRight.png';
 
 const ConnectMyWalletButton = () => {
   return (
@@ -13,7 +15,7 @@ const ConnectMyWalletButton = () => {
 
         return (
           <div
-            className="connect-wallet"
+            className="connect-wallet h-full w-full"
             {...(!ready && {
               'aria-hidden': true,
               style: {
@@ -26,24 +28,28 @@ const ConnectMyWalletButton = () => {
             {(() => {
               if (!connected) {
                 return (
-                  <div className="label-and-icons">
-                    <div className="label-wrapper">
-                      <button className="button" onClick={openConnectModal} type="button">
-                        Connect My Wallet
-                      </button>
-                    </div>
+                  <div className="h-full w-full">
+                    <button className="button" onClick={openConnectModal}>
+                      <div className="flex justify-center items-center space-x-8">
+                        <img src={FingerLeft} alt="Left" className="w-8 h-8" />
+                        <span className="font-concert-one text-3xl">Connect Wallet</span>
+                        <img src={FingerRight} alt="Right" className="w-8 h-8" />
+                      </div>
+                    </button>
                   </div>
                 );
               }
               if (chain.unsupported) {
                 return (
-                  <button className="button" onClick={openChainModal} type="button">
-                    Wrong network
-                  </button>
+                  <div className="h-full w-full">
+                    <button className="button" onClick={openChainModal} type="button">
+                      Wrong network
+                    </button>
+                  </div>
                 );
               }
               return (
-                <div style={{ display: 'flex', gap: 12 }}>
+                <div style={{ display: 'flex', gap: 12, height: '100%', width: '100%' }}>
                   <button
                     className="button"
                     onClick={openChainModal}

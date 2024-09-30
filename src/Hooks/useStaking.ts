@@ -101,7 +101,7 @@ const useStaking = () => {
     return null;
   };
 
-  const getUserReward = async (address: Hash | undefined) => {
+  const getUserClaimedReward = async (address: Hash | undefined) => {
     const result = await contractRead({ functionCall: publicContract.read.getUserClaimedReward, inputVal: address });
     if (result.res) {
       return result.data;
@@ -110,7 +110,7 @@ const useStaking = () => {
     return null;
   };
 
-  const getUserClaim = async (address: Hash | undefined) => {
+  const getUserReward = async (address: Hash | undefined) => {
     const result = await contractRead({ functionCall: publicContract.read.getUserReward, inputVal: address });
     if (result.res) {
       return result.data;
@@ -125,8 +125,8 @@ const useStaking = () => {
     disconnect,
     getTotalStaking,
     getUserStakingAmount,
+    getUserClaimedReward,
     getUserReward,
-    getUserClaim,
     staking,
     unstaking,
   };
