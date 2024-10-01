@@ -188,6 +188,8 @@ const MainDashboard: React.FC = () => {
 
   return (
     <PageLayout>
+      {loading && <Loading />}
+      <Alert type={alert.type} message={alert.message} />
       <div className="h-[80%] grid grid-rows-5 grid-cols-5 gap-4">
         {/* PageTitle */}
         <div className="row-span-1 col-span-5 p-4 text-black text-center">
@@ -209,11 +211,10 @@ const MainDashboard: React.FC = () => {
                 </div>
                 <input
                   onChange={(event) => {
-                    const inputValue = new BigNumber(event.target.value);
-                    if (inputValue.gte(0)) {
-                      setEnterTokensAmount(inputValue.toString());
-
-                      setEnterTokensAmount('');
+                    const inputValue = event.target.value;
+                    const bigNumberValue = new BigNumber(inputValue || 0);
+                    if (bigNumberValue.gte(0)) {
+                      setEnterTokensAmount(inputValue);
                     }
                   }}
                   value={enterTokensAmount}
@@ -304,9 +305,6 @@ const MainDashboard: React.FC = () => {
           </div>
         </div>
       </div>
-      {loading && <Loading />}
-      <Alert type={alert.type} message={alert.message} />
-      {/* Grid */}
     </PageLayout>
   );
 };

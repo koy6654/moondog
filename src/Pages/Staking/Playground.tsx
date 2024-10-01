@@ -5,7 +5,7 @@ const Playground: React.FC = () => {
   return (
     <>
       <div className="w-full mb-12">
-        <div className="flex flex-row justify-center items-center">
+        <div className="flex flex-row justify-center items-center px-28">
           <Divider />
           <div className="mx-20">
             <img src={PlaygroundTitle} alt="PlaygroundTitle" className="w-[240px] h-auto" />

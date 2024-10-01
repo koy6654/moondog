@@ -41,7 +41,7 @@ const ConnectMyWalletButton = () => {
               }
               if (chain.unsupported) {
                 return (
-                  <div className="h-full w-full">
+                  <div className="h-full w-full font-concert-one text-3xl">
                     <button className="button" onClick={openChainModal} type="button">
                       Wrong network
                     </button>
@@ -49,7 +49,7 @@ const ConnectMyWalletButton = () => {
                 );
               }
               return (
-                <div style={{ display: 'flex', gap: 12, height: '100%', width: '100%' }}>
+                <div className="flex h-full w-full gap-4 font-concert-one text-3xl">
                   <button
                     className="button"
                     onClick={openChainModal}

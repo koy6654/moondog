@@ -6,8 +6,7 @@ import FrequentlyAskedQuestions from './FrequentlyAskedQuestions';
 
 const Staking: React.FC = () => {
   return (
-    // <div className="bg-texture bg-[#E3C094] bg-cover flex flex-col w-full h-full">
-    <div className="bg-texture bg-[#E3C094] bg-cover flex flex-col w-full h-auto min-h-screen overflow-y-auto">
+    <div className="bg-texture bg-[#E3C094] bg-cover flex flex-col w-full h-full">
       <Playground />
       <MainDashboard />
       <Rewards />
