@@ -49,31 +49,22 @@ const ConnectMyWalletButton = () => {
                 );
               }
               return (
-                <div className="flex h-full w-full gap-4 font-concert-one text-3xl">
-                  <button
+                <div className="h-full w-full flex gap-4 font-concert-one text-3xl overflow-hidden">
+                  {/* <button
                     className="button"
                     onClick={openChainModal}
                     style={{ display: 'flex', alignItems: 'center' }}
                     type="button"
                   >
                     {chain.hasIcon && (
-                      <div
-                        style={{
-                          background: chain.iconBackground,
-                          width: 12,
-                          height: 12,
-                          borderRadius: 999,
-                          overflow: 'hidden',
-                          marginRight: 4,
-                        }}
-                      >
+                      <div className={`bg-[${chain.iconBackground}] w-3 h-3 rounded-full overflow-hidden mr-1`}>
                         {chain.iconUrl && (
                           <img alt={chain.name ?? 'Chain icon'} src={chain.iconUrl} style={{ width: 12, height: 12 }} />
                         )}
                       </div>
                     )}
                     {chain.name}
-                  </button>
+                  </button> */}
                   <button className="button" onClick={openAccountModal} type="button">
                     {account.displayName}
                     {account.displayBalance ? ` (${account.displayBalance})` : ''}
@@ -81,7 +72,6 @@ const ConnectMyWalletButton = () => {
                 </div>
               );
             })()}
-            {/* <img className="shape" alt="Shape" src={shape} /> */}
           </div>
         );
       }}

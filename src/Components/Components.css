@@ -102,3 +102,28 @@
   font-weight: 700;
   line-height: normal;
 }
+
+.leaderboard-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: url('../Assets/Images/LeaderboardThumb.png') transparent;
+}
+
+.leaderboard-scrollbar::-webkit-scrollbar {
+  width: 24px; /* 스크롤바의 너비 */
+}
+
+.leaderboard-scrollbar::-webkit-scrollbar-thumb {
+  background-image: url('../Assets/Images//LeaderboardThumb.png');
+}
+
+.leaderboard-scrollbar::-webkit-scrollbar-track {
+  background: transparent; /* 트랙 배경 */
+}
+
+.leaderboard-scrollbar::-webkit-scrollbar:vertical {
+  background: url('../Assets/Images/LeaderboardArrowUp.png') no-repeat top center;
+}
+
+.leaderboard-scrollbar::-webkit-scrollbar:vertical {
+  background: url('../Assets/Images/LeaderboardArrowDown.png') no-repeat bottom center;
+}

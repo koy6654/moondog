@@ -1,3 +1,4 @@
+import './Components.css';
 import React from 'react';
 
 export interface TopRankList {
@@ -11,22 +12,26 @@ interface LeaderboardTableProps {
 
 const LeaderboardTable: React.FC<LeaderboardTableProps> = ({ topRankList }) => {
   return (
-    <div className="overflow-x-auto">
-      <div className="max-w-full h-60 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-300">
-        <table className="min-w-full border-collapse bg-white">
+    <div className="overflow-x-auto mt-6">
+      <div className="max-w-full h-60 overflow-y-auto leaderboard-scrollbar relative">
+        <table className="min-w-full">
           <thead>
-            <tr className="bg-gray-200">
-              <th className="border border-gray-400 p-4">ID</th>
-              <th className="border border-gray-400 p-4">Name</th>
-              <th className="border border-gray-400 p-4">Score</th>
+            <tr className="bg-[#EECCA0] rounded-[14px]">
+              <th className="p-4">Rank</th>
+              <th className="p-4">l</th>
+              <th className="p-4">Wallet Address</th>
+              <th className="p-4">l</th>
+              <th className="p-4">Top Score</th>
             </tr>
           </thead>
           <tbody>
             {topRankList.map((topRank, index) => (
-              <tr key={topRank.address} className="hover:bg-gray-100">
-                <td className="border border-gray-400 p-4">{index}</td>
-                <td className="border border-gray-400 p-4">{topRank.address}</td>
-                <td className="border border-gray-400 p-4">{topRank.score}</td>
+              <tr key={topRank.address}>
+                <td className="border-b-4 border-[#A2845E] p-4">{index + 1}</td>
+                <td className="border-b-4 border-[#A2845E] p-4"></td>
+                <td className="border-b-4 border-[#A2845E] p-4">{topRank.address}</td>
+                <td className="border-b-4 border-[#A2845E] p-4"></td>
+                <td className="border-b-4 border-[#A2845E] p-4">{topRank.score}</td>
               </tr>
             ))}
           </tbody>

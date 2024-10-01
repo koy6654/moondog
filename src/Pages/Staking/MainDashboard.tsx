@@ -18,7 +18,6 @@ import PageTitle from '../../Components/PageTitle';
 import Gem from '../../Assets/Images/Gem.png';
 import StakingDown from '../../Assets/Images/StakingDown.png';
 import UnStakingUp from '../../Assets/Images/UnStakingUp.png';
-import PlaygroundTitle from '../../Assets/Images/PlaygroundTitle.png';
 import GamePreview from '../../Assets/Images/GamePreview.png';
 import LeaderboardIcon from '../../Assets/Images/Leaderboard.png';
 import Divider from '../../Components/Divider';
@@ -120,15 +119,22 @@ const MainDashboard: React.FC = () => {
 
   const getTvlAndTotalStaked = async () => {
     const total = (await getTotalStaking()) ?? '0';
-    const totalString = new BigNumber(total).toString();
+    const totalBigNumber = new BigNumber(total);
 
     try {
       const { data: usdPrice } = await axios.get<string>(`${process.env.REACT_APP_API_DOMAIN}/api/token/setStart`);
 
-      const tvl = new BigNumber(usdPrice).multipliedBy(totalString).toString();
+      const tvlBigNumber = new BigNumber(usdPrice).multipliedBy(totalBigNumber);
 
-      setTotalStaked(totalString);
-      setTvl(tvl);
+      if (totalBigNumber.isNaN() || tvlBigNumber.isNaN()) {
+        console.error('getTvlAndTotalStaked NaN occured!');
+        setTotalStaked('0');
+        setTvl('0');
+        return;
+      }
+
+      setTotalStaked(totalBigNumber.toString());
+      setTvl(tvlBigNumber.toString());
     } catch (err) {
       console.error(err);
       setTotalStaked('0');
@@ -166,6 +172,34 @@ const MainDashboard: React.FC = () => {
         {
           address: '0x1234',
           score: 200,
+        },
+        {
+          address: '0x12345',
+          score: 100,
+        },
+        {
+          address: '0x12345',
+          score: 100,
+        },
+        {
+          address: '0x12345',
+          score: 100,
+        },
+        {
+          address: '0x12345',
+          score: 100,
+        },
+        {
+          address: '0x12345',
+          score: 100,
+        },
+        {
+          address: '0x12345',
+          score: 100,
+        },
+        {
+          address: '0x12345',
+          score: 100,
         },
         {
           address: '0x12345',
@@ -291,15 +325,14 @@ const MainDashboard: React.FC = () => {
 
             <div className="w-full h-1/2 mt-12">
               <div className="w-[95%] h-full bg-[#FFFFFF] shadow-lg border-4 border-black p-8 mx-auto">
-                <div className="flex flex-col">
+                <div className="flex flex-col font-concert-one text-left text-base">
                   <div className="flex flex-row justify-start items-center mb-4">
                     <img src={LeaderboardIcon} alt="Leaderboard" className="w-[19px] h-auto" />
-                    <span className="font-concert-one text-left text-2xl ml-2">Leaderboard</span>
+                    <span className="ml-2">Leaderboard</span>
                   </div>
                   <Divider />
+                  <LeaderboardTable topRankList={topRankList} />
                 </div>
-
-                <LeaderboardTable topRankList={topRankList} />
               </div>
             </div>
           </div>
