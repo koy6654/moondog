@@ -6,22 +6,25 @@ export interface AlertProps {
 }
 
 const Alert: React.FC<AlertProps> = ({ type, message }) => {
-  const [visible, setVisible] = useState(true);
+  // const [visible, setVisible] = useState(true);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setVisible(false);
-    }, 3000);
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setVisible(false);
+  //   }, 3000);
 
-    return () => clearTimeout(timer);
-  }, []);
+  //   console.log('exec');
 
-  if (!visible || !type) return null;
+  //   return () => clearTimeout(timer);
+  // }, []);
+
+  // if (!visible || !type) return null;
+  if (!type) return null;
 
   const alertStyles = {
-    success: 'bg-green-100 border border-green-400 text-green-700',
-    warning: 'bg-yellow-100 border border-yellow-400 text-yellow-700',
-    error: 'bg-red-100 border border-red-400 text-red-700',
+    success: 'bg-[##dcfce7] border border-[#4ade80] text-[#15803d]',
+    warning: 'bg-[#fef9c3] border border-[#facc15] text-[#a16207]',
+    error: 'bg-[#fee2e2] border border-[#f87171] text-[#b91c1c]',
   };
 
   return (

@@ -220,24 +220,29 @@ const MainDashboard: React.FC = () => {
     getLeaderboardInfo();
   }, []);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setAlert({ type: null, message: '' });
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, [alert]);
+
   return (
     <PageLayout>
-      {loading && <Loading />}
-      <Alert type={alert.type} message={alert.message} />
-      <div className="grid grid-cols-5 gap-4">
+      <div className="h-full w-full grid grid-cols-5 gap-4">
         {/* PageTitle */}
-        <div className="min-h-20 col-span-5 p-4 text-black text-center">
+        <div className="min-h-20 w-full col-span-5 p-4 text-black text-center">
           <PageTitle title={'Sip the $MOONDOG, Earn the Rewards!'} />
         </div>
         {/* Wallet */}
-        <div className="h-full col-span-3 p-4 bg-[#FFFFFF] bg-opacity-50 text-black text-center">
+        <div className="h-[600px] col-span-3 p-4 bg-[#FFFFFF] bg-opacity-50 text-black text-center">
           <div className="h-full grid grid-cols-4 p-5">
             {/* Connect my wallet */}
-            <div className="h-20 col-span-4 flex justify-center items-center">
+            <div className="h-20 col-span-4 mb-4 flex justify-center items-center">
               <ConnectWalletButton />
             </div>
             {/* Enter Tokens Amount */}
-            <div className="col-span-4">
+            <div className="h-full col-span-4 mb-4">
               <div className="flex flex-col">
                 <div className="flex items-center w-full h-full">
                   <img src={Gem} alt="Gem" className="h-full" />
@@ -259,7 +264,7 @@ const MainDashboard: React.FC = () => {
                 />
               </div>
             </div>
-            <div className="col-span-4 font-concert-one">
+            <div className="h-full col-span-4 font-concert-one">
               <Divider />
               <div className="flex justify-between items-start py-5">
                 <div className="flex flex-col w-1/2 pl-8 pr-6">
@@ -277,8 +282,8 @@ const MainDashboard: React.FC = () => {
               </div>
               <Divider />
             </div>
-            <div className="col-span-4">
-              <div className="flex justify-center items-center gap-10 mt-6">
+            <div className="h-full col-span-4">
+              <div className="flex justify-center items-center gap-10">
                 <button
                   className="flex justify-center items-center bg-[#FFCC00] w-[390px] h-[70px] border-2 border-solid border-black shadow-[4px_4px_0px_#B1B8BD] rounded-[1.5px] font-concert-one text-2xl"
                   onClick={onClickStaking}
@@ -298,8 +303,9 @@ const MainDashboard: React.FC = () => {
           </div>
         </div>
         {/* Game preview & Leaderboard */}
-        <div className="h-full col-span-2 text-black text-center py-6">
-          <div className="h-full flex flex-col items-center justify-center">
+        <div className="w-full h-[600px] col-span-2 text-black text-center pt-2 overflow-hidden">
+          {/* Game preview */}
+          <div className="flex flex-col items-center justify-center">
             <div className="w-full h-1/2 relative">
               <div className="w-[95%] h-full rounded-[32px] bg-[#FFFFFF] shadow-lg border-4 border-black p-8 mx-auto">
                 <img src={GamePreview} alt="GamePreview" className="w-full h-full object-cover" />
@@ -322,12 +328,12 @@ const MainDashboard: React.FC = () => {
                 </button>
               </div>
             </div>
-
-            <div className="w-full h-1/2 mt-12">
+            {/* Leaderboard */}
+            <div className="w-full h-1/2 mt-4">
               <div className="w-[95%] h-full bg-[#FFFFFF] shadow-lg border-4 border-black p-8 mx-auto">
-                <div className="flex flex-col font-concert-one text-left text-base">
-                  <div className="flex flex-row justify-start items-center mb-4">
-                    <img src={LeaderboardIcon} alt="Leaderboard" className="w-[19px] h-auto" />
+                <div className="h-full flex flex-col font-concert-one text-left text-base">
+                  <div className="h-full flex flex-row justify-start items-center mb-4">
+                    <img src={LeaderboardIcon} alt="Leaderboard" className="w-[19px] h-full" />
                     <span className="ml-2">Leaderboard</span>
                   </div>
                   <Divider />
@@ -338,6 +344,8 @@ const MainDashboard: React.FC = () => {
           </div>
         </div>
       </div>
+      {loading && <Loading />}
+      <Alert type={alert.type} message={alert.message} />
     </PageLayout>
   );
 };

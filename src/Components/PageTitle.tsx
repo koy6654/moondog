@@ -8,7 +8,7 @@ interface PageTitleProps {
 
 const PageTitle: React.FC<PageTitleProps> = ({ title }) => {
   return (
-    <div className="flex justify-center items-center">
+    <div className="w-full h-full flex justify-center items-center">
       <img src={PageTitle1} alt="Left" />
       <div className="label">
         <p className="text-wrapper">{title}</p>
