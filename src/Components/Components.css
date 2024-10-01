@@ -92,12 +92,13 @@
 }
 
 .text-wrapper {
-  -webkit-text-stroke: 4px #000000;
-  color: #ffffff;
-  font-family: 'Comic Sans MS', Helvetica;
-  font-size: 48px;
-  font-weight: 700;
-  letter-spacing: 0;
-  line-height: normal;
+  color: #fff;
+  text-align: center;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  -webkit-text-stroke: 4px var(--Miscellaneous-Floating-Tab---Text-Unselected, #000); /* 외곽선 두께와 색상 */
+  font-family: 'Comic Sans MS';
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }

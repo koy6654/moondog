@@ -14,10 +14,20 @@ module.exports = {
       },
       fontFamily: {
         'concert-one': ['"Concert One"', 'cursive', 'sans-serif'],
+        'comic-sans-ms': [
+          '"Comic Sans MS"',
+          'Arial Rounded MT Bold',
+          'Chalkboard SE',
+          'Patrick Hand',
+          'Quicksand',
+          'Poppins',
+          'cursive',
+        ],
       },
     },
     colors: {
       'white-gray': '#FFFFFF99',
+      'light-tan': '#E9CBA4',
     },
   },
   plugins: [],
