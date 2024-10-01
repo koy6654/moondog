@@ -26,7 +26,7 @@ const LeaderboardTable: React.FC<LeaderboardTableProps> = ({ topRankList }) => {
           </thead>
           <tbody>
             {topRankList.map((topRank, index) => (
-              <tr key={topRank.address}>
+              <tr key={index}>
                 <td className="border-b-4 border-[#A2845E] p-4">{index + 1}</td>
                 <td className="border-b-4 border-[#A2845E] p-4"></td>
                 <td className="border-b-4 border-[#A2845E] p-4">{topRank.address}</td>

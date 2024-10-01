@@ -224,16 +224,16 @@ const MainDashboard: React.FC = () => {
     <PageLayout>
       {loading && <Loading />}
       <Alert type={alert.type} message={alert.message} />
-      <div className="h-[80%] grid grid-rows-5 grid-cols-5 gap-4">
+      <div className="grid grid-cols-5 gap-4">
         {/* PageTitle */}
-        <div className="row-span-1 col-span-5 p-4 text-black text-center">
+        <div className="min-h-20 col-span-5 p-4 text-black text-center">
           <PageTitle title={'Sip the $MOONDOG, Earn the Rewards!'} />
         </div>
         {/* Wallet */}
-        <div className="h-full bg-[#FFFFFF] bg-opacity-50 row-span-4 col-span-3 p-4 text-black text-center">
-          <div className="h-full grid grid-rows-3 grid-cols-4 p-5">
+        <div className="h-full col-span-3 p-4 bg-[#FFFFFF] bg-opacity-50 text-black text-center">
+          <div className="h-full grid grid-cols-4 p-5">
             {/* Connect my wallet */}
-            <div className="col-span-4 h-20	flex justify-center items-center">
+            <div className="h-20 col-span-4 flex justify-center items-center">
               <ConnectWalletButton />
             </div>
             {/* Enter Tokens Amount */}
@@ -298,7 +298,7 @@ const MainDashboard: React.FC = () => {
           </div>
         </div>
         {/* Game preview & Leaderboard */}
-        <div className="h-full row-span-4 col-span-2 text-black text-center py-6">
+        <div className="h-full col-span-2 text-black text-center py-6">
           <div className="h-full flex flex-col items-center justify-center">
             <div className="w-full h-1/2 relative">
               <div className="w-[95%] h-full rounded-[32px] bg-[#FFFFFF] shadow-lg border-4 border-black p-8 mx-auto">
