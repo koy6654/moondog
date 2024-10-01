@@ -303,7 +303,7 @@ const MainDashboard: React.FC = () => {
           </div>
         </div>
         {/* Game preview & Leaderboard */}
-        <div className="w-full h-[600px] col-span-2 text-black text-center pt-2 overflow-hidden">
+        <div className="w-full h-[600px] col-span-2 text-black text-center overflow-hidden">
           {/* Game preview */}
           <div className="flex flex-col items-center justify-center">
             <div className="w-full h-1/2 relative">
