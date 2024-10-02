@@ -4,7 +4,6 @@ import Divider from '../../Components/Divider';
 const Playground: React.FC = () => {
   return (
     <>
-      playground
       <div className="min-h-20 w-full">
         <div className="flex flex-row justify-center items-center px-28">
           <Divider />

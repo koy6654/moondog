@@ -4,12 +4,11 @@ import PageTitle from '../../Components/PageTitle';
 const FrequentlyAskedQuestions: React.FC = () => {
   return (
     <PageLayout>
-      FrequentlyAskedQuestions
       {/* Grid */}
-      <div className="h-full grid grid-rows-3 grid-cols-2 gap-4">
+      <div className="h-full grid grid-rows-3 grid-cols-2 gap-4 mt-[128px]">
         {/* Header */}
         <div className="col-span-2 bg-blue-500 p-4 text-white text-center">
-          <PageTitle title={'FAQ'} />
+          <PageTitle title={'FAQ'} subTitle="We are the speakeasy for you to know too much" />
         </div>
 
         {/* Wallet */}

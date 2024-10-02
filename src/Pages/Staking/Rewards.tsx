@@ -52,10 +52,10 @@ const Rewards: React.FC = () => {
   return (
     <PageLayout>
       Rewards
-      <div className="h-full grid grid-rows-3 grid-cols-4 gap-4">
+      <div className="h-full grid grid-rows-3 grid-cols-4 gap-4 mt-[128px]">
         {/* Header */}
         <div className="row-span-1 col-span-4 p-4 text-center">
-          <PageTitle title={'Put your $MOONDOG to work'} />
+          <PageTitle title={'Put your $MOONDOG to work'} subTitle="Stake, play and earn to become part of the legend" />
         </div>
 
         {/* Images */}
