@@ -229,6 +229,7 @@ const MainDashboard: React.FC = () => {
 
   return (
     <PageLayout>
+      main dashboard
       <div className="h-full w-full grid grid-cols-5 gap-4">
         {/* PageTitle */}
         <div className="min-h-20 w-full col-span-5 p-4 text-black text-center">

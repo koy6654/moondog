@@ -51,6 +51,7 @@ const Rewards: React.FC = () => {
 
   return (
     <PageLayout>
+      Rewards
       <div className="h-full grid grid-rows-3 grid-cols-4 gap-4">
         {/* Header */}
         <div className="row-span-1 col-span-4 p-4 text-center">

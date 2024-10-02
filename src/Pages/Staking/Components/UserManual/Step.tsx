@@ -1,0 +1,36 @@
+import React, { ReactNode } from 'react';
+
+import { ReactComponent as ChevronRight } from '../../../../Assets/Icons/ChevronRight.svg';
+import BoxArrowRight from '../../../../Assets/Icons/BoxArrowRight.svg';
+
+interface StepProps {
+  stepNumber: string;
+  title: ReactNode;
+  description: ReactNode;
+}
+
+export default function Step(props: StepProps) {
+  const { stepNumber, title, description } = props;
+  return (
+    <div className={`step-${stepNumber}`}>
+      <div className="flex items-center relative mb-[15px] max-w-[1196px] h-[116px] bg-[#FFF] border-[3px] border-solid border-black rounded-[32px] font-concert-one text-black text-lg px-[88px]">
+        <div
+          className="absolute left-[-5%] top-[25%] flex justify-center items-center font-bold w-[111px] h-[55px]"
+          style={{
+            backgroundImage: `url(${BoxArrowRight})`,
+            backgroundSize: 'contain',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'right',
+          }}
+        >
+          <span className="ml-[-10px] mt-[-5px]">Step {stepNumber}</span>
+        </div>
+        <h4 className="title font-normal text-black text-[32px] tracking-[0] leading-[33px]">{title}</h4>
+        <i className="icon mx-[66px]">
+          <ChevronRight />
+        </i>
+        <div className="description absolute left-[412px] text-[22px] font-bold]">{description}</div>
+      </div>
+    </div>
+  );
+}

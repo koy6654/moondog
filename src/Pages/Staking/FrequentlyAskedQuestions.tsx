@@ -4,6 +4,7 @@ import PageTitle from '../../Components/PageTitle';
 const FrequentlyAskedQuestions: React.FC = () => {
   return (
     <PageLayout>
+      FrequentlyAskedQuestions
       {/* Grid */}
       <div className="h-full grid grid-rows-3 grid-cols-2 gap-4">
         {/* Header */}
