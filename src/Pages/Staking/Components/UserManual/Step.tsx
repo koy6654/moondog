@@ -1,6 +1,8 @@
 import React, { ReactNode } from 'react';
 
+// svg to component (jsx)
 import { ReactComponent as ChevronRight } from '../../../../Assets/Icons/ChevronRight.svg';
+// svg to image (for background)
 import BoxArrowRight from '../../../../Assets/Icons/BoxArrowRight.svg';
 
 interface StepProps {
