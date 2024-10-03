@@ -9,10 +9,11 @@ interface StepProps {
   stepNumber: string;
   title: ReactNode;
   description: ReactNode;
+  chevronRightMargin?: number;
 }
 
 export default function Step(props: StepProps) {
-  const { stepNumber, title, description } = props;
+  const { stepNumber, title, description, chevronRightMargin = 0 } = props;
   return (
     <div className={`step-${stepNumber}`}>
       <div className="flex items-center relative mb-[15px] max-w-[1196px] h-[116px] bg-[#FFF] border-[3px] border-solid border-black rounded-[32px] font-concert-one text-black text-lg px-[88px]">
@@ -28,7 +29,7 @@ export default function Step(props: StepProps) {
           <span className="ml-[-10px] mt-[-5px]">Step {stepNumber}</span>
         </div>
         <h4 className="title font-normal text-black text-[32px] tracking-[0] leading-[33px]">{title}</h4>
-        <i className="icon mx-[66px]">
+        <i className="icon" style={{ marginLeft: `${chevronRightMargin}px`, marginRight: `${chevronRightMargin}px` }}>
           <ChevronRight />
         </i>
         <div className="description absolute left-[412px] text-[22px] font-bold]">{description}</div>

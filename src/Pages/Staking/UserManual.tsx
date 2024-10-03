@@ -21,9 +21,15 @@ const UserManual: React.FC = () => {
                 connect
               </>
             }
+            chevronRightMargin={66}
             description={<>Connect Metamask to the MOONDOG Staking Platform</>}
           />
-          <Step stepNumber="02" title={<>Staking</>} description={<>Earn $MOONDOG by staking</>} />
+          <Step
+            stepNumber="02"
+            title={<>Staking</>}
+            chevronRightMargin={102}
+            description={<>Earn $MOONDOG by staking</>}
+          />
           <Step
             stepNumber="03"
             title={
@@ -33,11 +39,13 @@ const UserManual: React.FC = () => {
                 Staking Rewards
               </>
             }
+            chevronRightMargin={39}
             description={<>Rewards are claimable after 7days</>}
           />
           <Step
             stepNumber="04"
             title={<>Play Game</>}
+            chevronRightMargin={82}
             description={
               <>
                 Play game to earn additional reward.
@@ -55,6 +63,7 @@ const UserManual: React.FC = () => {
                 Gaming Rewards
               </>
             }
+            chevronRightMargin={33}
             description={
               <>
                 Rewards are claimable after playing the game and when you are
@@ -66,6 +75,7 @@ const UserManual: React.FC = () => {
           <Step
             stepNumber="06"
             title={<>Claim Rewards</>}
+            chevronRightMargin={52}
             description={<>Connect Metamask to the MOONDOG Staking Platform</>}
           />
         </div>

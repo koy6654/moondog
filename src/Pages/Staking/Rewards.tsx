@@ -51,10 +51,9 @@ const Rewards: React.FC = () => {
 
   return (
     <PageLayout>
-      Rewards
-      <div className="h-full grid grid-rows-3 grid-cols-4 gap-4 mt-[128px]">
+      <div className="h-full grid grid-cols-5 gap-4 mt-[128px]">
         {/* Header */}
-        <div className="row-span-1 col-span-4 p-4 text-center">
+        <div className="col-span-5 w-full p-4 text-center">
           <PageTitle title={'Put your $MOONDOG to work'} subTitle="Stake, play and earn to become part of the legend" />
         </div>
 
@@ -72,42 +71,55 @@ const Rewards: React.FC = () => {
           </div>
           Put your Moondog to work. Stake, play and earn to become a part of the legend
         </div> */}
-        <div className="h-full row-span-2 col-span-1 p-4 text-center">
-          <div className="flex flex-wrap justify-center items-center h-full">
-            {images.map((src, index) => (
-              <img
-                key={index}
-                src={src}
-                alt=""
-                className="w-10 h-10 max-w-full object-cover m-2 transition-transform duration-75"
-              />
-            ))}
-            <p>Put your Moondog to work. Stake, play and earn to become a part of the legend.</p>
+        {/*
+         *    ██████╗  █████╗  ██████╗██╗  ██╗██╗   ██╗██████╗
+         *    ██╔══██╗██╔══██╗██╔════╝██║ ██╔╝██║   ██║██╔══██╗
+         *    ██████╔╝███████║██║     █████╔╝ ██║   ██║██████╔╝
+         *    ██╔══██╗██╔══██║██║     ██╔═██╗ ██║   ██║██╔═══╝
+         *    ██████╔╝██║  ██║╚██████╗██║  ██╗╚██████╔╝██║
+         *    ╚═════╝ ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝ ╚═════╝ ╚═╝
+         *
+         */}
+        <div className="border border-[3px] border-[#ff0000] col-span-5 mt-[100px]">
+          <div className="h-full p-4 text-center">
+            <div className="flex flex-wrap justify-center items-center h-full">
+              {images.map((src, index) => (
+                <img
+                  key={index}
+                  src={src}
+                  alt=""
+                  className="w-10 h-10 max-w-full object-cover m-2 transition-transform duration-75"
+                />
+              ))}
+              <p>Put your Moondog to work. Stake, play and earn to become a part of the legend.</p>
+            </div>
           </div>
         </div>
-
         {/* Rewards */}
-        <div className="row-span-1 col-span-1 p-4 text-center">
+        <div className="p-4 text-center border border-[3px] border-[#ff0000]">
           <div className="flex flex-col">
             <div>Staking reward</div>
             <div>{userStakingReward}</div>
           </div>
         </div>
-        <div className="row-span-1 col-span-1 p-4 text-center">
+        <div className="p-4 text-center border border-[3px] border-[#ff0000]">
           <div className="flex flex-col">
             <div>Game reward</div>
             <div>{userGameReward}</div>
           </div>
         </div>
-        <div className="row-span-1 col-span-1 p-4 text-center">
+        <div className="p-4 text-center border border-[3px] border-[#ff0000]">
           <div className="flex flex-col">
             <div>Top player reward</div>
             <div>{topPlayerReward}</div>
           </div>
         </div>
-        <Button label={'test'} onClick={() => console.log('test')} />
+        <div className="col-span-3 border border-[3px] border-[#ff0000]">
+          <Button label={'test'} onClick={() => console.log('test')} />
+        </div>
         {/* Exchange logos */}
-        <div className="row-span-1 col-span-3 p-4 text-center">리더보드</div>
+        <div className="col-span-3 p-4 text-center border border-[3px] border-[#ff0000]">리더보드</div>
+        {/* backup end */}
       </div>
     </PageLayout>
   );
