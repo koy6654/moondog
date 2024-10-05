@@ -1,11 +1,5 @@
 import PageLayout from '../../Components/PageLayout';
-import CloudSquare1 from '../../Assets/Images/cloud_square.png';
-import CloudSquare2 from '../../Assets/Images/cloud_square.png';
-import CloudSquare3 from '../../Assets/Images/cloud_square.png';
-import CloudSquare4 from '../../Assets/Images/cloud_square.png';
-import CloudSquare5 from '../../Assets/Images/cloud_square.png';
 import PageTitle from '../../Components/PageTitle';
-import Button from '../../Components/Button';
 import { useEffect, useState } from 'react';
 import { useAccount } from 'wagmi';
 import useStaking from '../../Hooks/useStaking';
@@ -23,8 +17,6 @@ import WhereToBuyQuestionMark1 from '../../Assets/Images/WhereToBuyQuestionMark1
 import WhereToBuyQuestionMark2 from '../../Assets/Images/WhereToBuyQuestionMark2.png';
 import WhereToBuyAnnotation from '../../Assets/Images/WhereToBuyAnnotation.png';
 import BigNumber from 'bignumber.js';
-
-const images = [CloudSquare1, CloudSquare2, CloudSquare3, CloudSquare4, CloudSquare5];
 
 const Rewards: React.FC = () => {
   const { address } = useAccount();
