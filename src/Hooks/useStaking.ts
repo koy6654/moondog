@@ -79,7 +79,7 @@ const useStaking = () => {
     return hash;
   };
 
-  const claim = async () => {
+  const stakingClaim = async () => {
     await walletContract('rewardClaim', []);
   };
 
@@ -129,6 +129,7 @@ const useStaking = () => {
     getUserReward,
     staking,
     unstaking,
+    stakingClaim,
   };
 };
 

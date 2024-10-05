@@ -13,15 +13,15 @@ const useGame = () => {
   const { writeContractAsync } = useWriteContract();
 
   const publicContract = getVeimPublicContract(gameContractAddress, moondogGameRewardAbi.abi as Abi);
-  // const walletContract = async (functionName: string, args: any) => {
-  //   return await writeContractAsync({
-  //     address: tokenContractAddress,
-  //     abi: moondogTokenAbi.abi,
-  //     functionName,
-  //     args,
-  //     account: address,
-  //   });
-  // };
+  const walletContract = async (functionName: string, args: any) => {
+    return await writeContractAsync({
+      address: gameContractAddress,
+      abi: moondogGameRewardAbi.abi,
+      functionName,
+      args,
+      account: address,
+    });
+  };
 
   const getUserGameReward = async (address: Hash): Promise<[string, string] | null> => {
     try {
@@ -43,8 +43,18 @@ const useGame = () => {
     }
   };
 
+  const gameRewardClaim = async () => {
+    await walletContract('gameRewardClaim', []);
+  };
+
+  const topPlayerRewardClaim = async () => {
+    await walletContract('topTierRewardClaim', []);
+  };
+
   return {
     getUserGameReward,
+    gameRewardClaim,
+    topPlayerRewardClaim,
   };
 };
 

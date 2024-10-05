@@ -6,7 +6,13 @@ import Loading from '../../Components/Loading';
 import useToken from '../../Hooks/useToken';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { totalStakedRecoil, userAvailableMoondogRecoil, userStakingAmountRecoil } from '../../State';
+import {
+  alertRecoil,
+  loadingRecoil,
+  totalStakedRecoil,
+  userAvailableMoondogRecoil,
+  userStakingAmountRecoil,
+} from '../../State';
 import axios from 'axios';
 import BigNumber from 'bignumber.js';
 import { useAccount, useBalance, useReadContract, useWaitForTransactionReceipt } from 'wagmi';
@@ -32,22 +38,23 @@ const MainDashboard: React.FC = () => {
   const [totalStaked, setTotalStaked] = useRecoilState(totalStakedRecoil);
   const [userAvailableMoondog, setUserAvailableMoondog] = useRecoilState(userAvailableMoondogRecoil);
   const [userStakingAmount, setUserStakingAmount] = useRecoilState(userStakingAmountRecoil);
+  const [loading, setLoading] = useRecoilState(loadingRecoil);
+  const [alert, setAlert] = useRecoilState<AlertProps>(alertRecoil);
 
   const navigate = useNavigate();
 
   const [tvl, setTvl] = useState('0');
-  const [loading, setLoading] = useState(false);
-  const [alert, setAlert] = useState<AlertProps>({ type: null, message: '' });
   const [enterTokensAmount, setEnterTokensAmount] = useState('');
   const [topRankList, setTopRankList] = useState<TopRankList[]>([]);
 
   const onClickStaking = async () => {
-    setLoading(true);
     if (isConnected === false) {
       setLoading(false);
       setAlert({ type: 'warning', message: 'Need to connect my wallet' });
       return;
     }
+
+    setLoading(true);
 
     const amountLessThenZero = new BigNumber(enterTokensAmount).lte(0);
     if (enterTokensAmount === '' || amountLessThenZero) {

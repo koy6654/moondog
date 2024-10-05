@@ -10,13 +10,28 @@ import { useEffect, useState } from 'react';
 import { useAccount } from 'wagmi';
 import useStaking from '../../Hooks/useStaking';
 import useGame from '../../Hooks/useGame';
+import RewardBox from '../../Components/RewardBox';
+import RewardBoxStakingReward from '../../Assets/Images/RewardBoxStakingReward.png';
+import RewardBoxGameReward from '../../Assets/Images/RewardBoxGameReward.png';
+import RewardBoxTopPlayer from '../../Assets/Images/RewardBoxTopPlayer.png';
+import { useRecoilState } from 'recoil';
+import { alertRecoil, loadingRecoil } from '../../State';
+import Alert, { AlertProps } from '../../Components/Alert';
+import Loading from '../../Components/Loading';
+import RewardSwatch from '../../Components/RewardSwatch';
+import WhereToBuyQuestionMark1 from '../../Assets/Images/WhereToBuyQuestionMark1.png';
+import WhereToBuyQuestionMark2 from '../../Assets/Images/WhereToBuyQuestionMark2.png';
+import WhereToBuyAnnotation from '../../Assets/Images/WhereToBuyAnnotation.png';
 
 const images = [CloudSquare1, CloudSquare2, CloudSquare3, CloudSquare4, CloudSquare5];
 
 const Rewards: React.FC = () => {
   const { address } = useAccount();
-  const { getUserReward } = useStaking();
-  const { getUserGameReward } = useGame();
+  const { getUserReward, stakingClaim } = useStaking();
+  const { getUserGameReward, gameRewardClaim, topPlayerRewardClaim } = useGame();
+
+  const [loading, setLoading] = useRecoilState(loadingRecoil);
+  const [alert, setAlert] = useRecoilState<AlertProps>(alertRecoil);
 
   const [userStakingReward, setUserStakingReward] = useState('0');
   const [userGameReward, setUserGameReward] = useState('0');
@@ -45,82 +60,108 @@ const Rewards: React.FC = () => {
     setTopPlayerReward(topReward);
   };
 
+  const onClickStakingClaim = async () => {
+    try {
+      await stakingClaim();
+    } catch (err) {
+      console.error(err);
+
+      setAlert({ type: 'error', message: 'Staking claim failed' });
+    }
+  };
+
+  const onClickGameRewardClaim = async () => {
+    try {
+      await gameRewardClaim();
+    } catch (err) {
+      console.error(err);
+
+      setAlert({ type: 'error', message: 'Game reward claim failed' });
+    }
+  };
+
+  const onClickTopPlayerRewardClaim = async () => {
+    try {
+      await topPlayerRewardClaim();
+    } catch (err) {
+      console.error(err);
+
+      setAlert({ type: 'error', message: 'Top player reward claim failed' });
+    }
+  };
+
   useEffect(() => {
     getRewards();
-  }, [userGameReward, topPlayerReward]);
+  }, [userStakingReward, userGameReward, topPlayerReward]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setAlert({ type: null, message: '' });
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, [alert]);
 
   return (
     <PageLayout>
-      <div className="h-full grid grid-cols-5 gap-4 mt-[128px]">
-        {/* Header */}
-        <div className="col-span-5 w-full p-4 text-center">
-          <PageTitle title={'Put your $MOONDOG to work'} subTitle="Stake, play and earn to become part of the legend" />
+      <div className="h-full w-full flex flex-col justify-center items-center mt-[128px]">
+        <PageTitle title={'Put your $MOONDOG to work'} subTitle="Stake, play and earn to become part of the legend" />
+
+        {/* Rewards */}
+        <div className="h-full w-full flex flex-row justify-center items-center gap-12 mt-12 px-24">
+          <RewardBox
+            title={'Staking Reward'}
+            subTitle={'“Staking means family”'}
+            rewardValue={userStakingReward}
+            claimOnClick={onClickStakingClaim}
+          >
+            <img src={RewardBoxStakingReward} />
+          </RewardBox>
+          <RewardBox
+            title={'Game Reward'}
+            subTitle={'“Get rich or die tryin’”'}
+            rewardValue={userGameReward}
+            claimOnClick={onClickGameRewardClaim}
+          >
+            <img src={RewardBoxGameReward} />
+          </RewardBox>
+          <RewardBox
+            title={'Top Player Reward'}
+            subTitle={'“Who is the boss”'}
+            rewardValue={topPlayerReward}
+            claimOnClick={onClickTopPlayerRewardClaim}
+          >
+            <img src={RewardBoxTopPlayer} />
+          </RewardBox>
         </div>
 
-        {/* Images */}
-        {/* <div className="h-full row-span-2 col-span-1 p-4 text-center">
-          <div className="flex flex-wrap flex-row justify-evenly">
-            {images.map((src, index) => (
-              <img
-                key={index}
-                src={src}
-                alt={''}
-                className="min-w-5 min-h-5 object-cover transition-transform duration-75"
-              />
-            ))}
-          </div>
-          Put your Moondog to work. Stake, play and earn to become a part of the legend
-        </div> */}
-        {/*
-         *    ██████╗  █████╗  ██████╗██╗  ██╗██╗   ██╗██████╗
-         *    ██╔══██╗██╔══██╗██╔════╝██║ ██╔╝██║   ██║██╔══██╗
-         *    ██████╔╝███████║██║     █████╔╝ ██║   ██║██████╔╝
-         *    ██╔══██╗██╔══██║██║     ██╔═██╗ ██║   ██║██╔═══╝
-         *    ██████╔╝██║  ██║╚██████╗██║  ██╗╚██████╔╝██║
-         *    ╚═════╝ ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝ ╚═════╝ ╚═╝
-         *
-         */}
-        <div className="border border-[3px] border-[#ff0000] col-span-5 mt-[100px]">
-          <div className="h-full p-4 text-center">
-            <div className="flex flex-wrap justify-center items-center h-full">
-              {images.map((src, index) => (
-                <img
-                  key={index}
-                  src={src}
-                  alt=""
-                  className="w-10 h-10 max-w-full object-cover m-2 transition-transform duration-75"
-                />
-              ))}
-              <p>Put your Moondog to work. Stake, play and earn to become a part of the legend.</p>
+        {/* Where to Buy */}
+        <div className="h-full w-full flex flex-row justify-center items-center gap-12 mt-12 px-24">
+          <div className="flex flex-col justify-center items-start">
+            <div className="relative flex flex-row justify-center items-center" style={{ marginBottom: 0 }}>
+              <img src={WhereToBuyQuestionMark1} className="w-[20px] h-[20px] mr-5" />
+              <img src={WhereToBuyQuestionMark2} className="w-[11px] h-[11px] absolute" />
+            </div>
+            <div
+              className="flex flex-row justify-start items-center font-concert-one text-lg relative"
+              style={{ transform: 'rotate(-5deg)', top: '-15px' }}
+            >
+              <div>Where to </div>
+              <div className="relative flex flex-row justify-center items-center">
+                <img src={WhereToBuyAnnotation} className="min-w-[85px] h-[40px] mt-2" />
+                <span className="absolute left-2 text-xl">Buy?</span>
+              </div>
             </div>
           </div>
+          <RewardSwatch>Dextools</RewardSwatch>
+          <RewardSwatch>
+            <span>DEX</span>
+            <span>Screener</span>
+          </RewardSwatch>
+          <RewardSwatch>ETC</RewardSwatch>
         </div>
-        {/* Rewards */}
-        <div className="p-4 text-center border border-[3px] border-[#ff0000]">
-          <div className="flex flex-col">
-            <div>Staking reward</div>
-            <div>{userStakingReward}</div>
-          </div>
-        </div>
-        <div className="p-4 text-center border border-[3px] border-[#ff0000]">
-          <div className="flex flex-col">
-            <div>Game reward</div>
-            <div>{userGameReward}</div>
-          </div>
-        </div>
-        <div className="p-4 text-center border border-[3px] border-[#ff0000]">
-          <div className="flex flex-col">
-            <div>Top player reward</div>
-            <div>{topPlayerReward}</div>
-          </div>
-        </div>
-        <div className="col-span-3 border border-[3px] border-[#ff0000]">
-          <Button label={'test'} onClick={() => console.log('test')} />
-        </div>
-        {/* Exchange logos */}
-        <div className="col-span-3 p-4 text-center border border-[3px] border-[#ff0000]">리더보드</div>
-        {/* backup end */}
       </div>
+      {loading && <Loading />}
+      <Alert type={alert.type} message={alert.message} />
     </PageLayout>
   );
 };

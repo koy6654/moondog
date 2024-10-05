@@ -1,4 +1,5 @@
 import { atom } from 'recoil';
+import { AlertProps } from '../Components/Alert';
 
 export const userAccountAddressRecoil = atom({
   key: 'UserAccountAddressRecoil',
@@ -38,4 +39,14 @@ export const userClaimRecoil = atom({
 export const totalStakedRecoil = atom<string>({
   key: 'TotalStakedRecoil',
   default: '0',
+});
+
+export const loadingRecoil = atom<boolean>({
+  key: 'LoadingRecoil',
+  default: false,
+});
+
+export const alertRecoil = atom<AlertProps>({
+  key: 'AlertRecoil',
+  default: { type: null, message: '' },
 });

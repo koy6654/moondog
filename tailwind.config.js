@@ -11,15 +11,7 @@ module.exports = {
       },
       fontFamily: {
         'concert-one': ['"Concert One"', 'cursive', 'sans-serif'],
-        'comic-sans-ms': [
-          '"Comic Sans MS"',
-          'Arial Rounded MT Bold',
-          'Chalkboard SE',
-          'Patrick Hand',
-          'Quicksand',
-          'Poppins',
-          'cursive',
-        ],
+        'comic-sans-ms': ['"Comic Sans MS"', 'Arial', 'sans-serif'],
       },
     },
     colors: {
