@@ -183,12 +183,28 @@ const Rewards: React.FC = () => {
               </div>
             </div>
           </div>
-          <RewardSwatch>Dextools</RewardSwatch>
-          <RewardSwatch>
+          <RewardSwatch
+            url={
+              'https://pancakeswap.finance/swap?outputCurrency=0xe06342e11e420e723eee4b04e3e6fe1c8c9e741c&inputCurrency=0x55d398326f99059fF775485246999027B3197955'
+            }
+          >
+            Dextools
+          </RewardSwatch>
+          <RewardSwatch
+            url={
+              'https://pancakeswap.finance/swap?outputCurrency=0xe06342e11e420e723eee4b04e3e6fe1c8c9e741c&inputCurrency=0x55d398326f99059fF775485246999027B3197955'
+            }
+          >
             <span>DEX</span>
             <span>Screener</span>
           </RewardSwatch>
-          <RewardSwatch>ETC</RewardSwatch>
+          <RewardSwatch
+            url={
+              'https://pancakeswap.finance/swap?outputCurrency=0xe06342e11e420e723eee4b04e3e6fe1c8c9e741c&inputCurrency=0x55d398326f99059fF775485246999027B3197955'
+            }
+          >
+            ETC
+          </RewardSwatch>
         </div>
       </div>
       {loading && <Loading />}
