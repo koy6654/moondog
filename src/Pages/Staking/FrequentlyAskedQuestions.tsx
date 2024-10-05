@@ -15,7 +15,7 @@ const FrequentlyAskedQuestions: React.FC = () => {
           <PageTitle title={'FAQ'} subTitle="We are the speakeasy for you to know too much" />
         </div>
 
-        <div className="col-auto font-concert-one w-full max-w-[703px]">
+        <div className="col-auto font-comic-sans-ms font-bold w-full max-w-[703px]">
           <div className="title flex flex-col items-start">
             <div className="flex items-center">
               <i>
@@ -27,7 +27,7 @@ const FrequentlyAskedQuestions: React.FC = () => {
               <FaqShapeLine />
             </div>
           </div>
-          <div className="faq-container py-[35px]" style={{ background: 'rgba(206, 166, 114, 0.49)' }}>
+          <div className="faq-container py-[8px]" style={{ background: 'rgba(206, 166, 114, 0.49)' }}>
             <FaqBox
               question="Q. What is $MOONDOG staking?"
               answer="Moondog staking allows users to lock their $MOONDOG tokens for a specified period
@@ -69,7 +69,7 @@ to the network’s stability and growth."
             />
           </div>
         </div>
-        <div className="col-auto font-concert-one w-full max-w-[703px]">
+        <div className="col-auto font-comic-sans-ms font-bold w-full max-w-[703px]">
           <div className="title flex flex-col items-start">
             <div className="flex items-center">
               <i>
@@ -81,7 +81,7 @@ to the network’s stability and growth."
               <FaqShapeLine />
             </div>
           </div>
-          <div className="faq-container py-[35px]" style={{ background: 'rgba(206, 166, 114, 0.49)' }}>
+          <div className="faq-container py-[8px]" style={{ background: 'rgba(206, 166, 114, 0.49)' }}>
             <FaqBox question="Q. Is Moondog game free?" answer="Yes, the Moondog game is free to play." />
             <FaqBox
               question="Q. How does the game work?"

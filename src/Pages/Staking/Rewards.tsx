@@ -145,7 +145,7 @@ const Rewards: React.FC = () => {
             rewardValue={userStakingReward}
             claimOnClick={onClickStakingClaim}
           >
-            <img src={RewardBoxStakingReward} />
+            <img src={RewardBoxStakingReward} className="mt-2" />
           </RewardBox>
           <RewardBox
             title={'Game Reward'}

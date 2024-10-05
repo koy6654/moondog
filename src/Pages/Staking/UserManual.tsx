@@ -65,11 +65,7 @@ const UserManual: React.FC = () => {
             }
             chevronRightMargin={33}
             description={
-              <>
-                Rewards are claimable after playing the game and when you are
-                <br />
-                in the top 10 of the weekly leaderboard
-              </>
+              <>Rewards are claimable after playing the game and when you are in the top 10 of the weekly leaderboard</>
             }
           />
           <Step
