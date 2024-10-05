@@ -22,6 +22,7 @@ import RewardSwatch from '../../Components/RewardSwatch';
 import WhereToBuyQuestionMark1 from '../../Assets/Images/WhereToBuyQuestionMark1.png';
 import WhereToBuyQuestionMark2 from '../../Assets/Images/WhereToBuyQuestionMark2.png';
 import WhereToBuyAnnotation from '../../Assets/Images/WhereToBuyAnnotation.png';
+import BigNumber from 'bignumber.js';
 
 const images = [CloudSquare1, CloudSquare2, CloudSquare3, CloudSquare4, CloudSquare5];
 
@@ -61,33 +62,63 @@ const Rewards: React.FC = () => {
   };
 
   const onClickStakingClaim = async () => {
+    if (new BigNumber(userStakingReward).isEqualTo('0')) {
+      setAlert({ type: 'warning', message: 'Reward is zero' });
+      return;
+    }
+
+    setLoading(true);
+
     try {
       await stakingClaim();
+      setAlert({ type: 'success', message: 'Staking claim done' });
     } catch (err) {
       console.error(err);
 
       setAlert({ type: 'error', message: 'Staking claim failed' });
     }
+
+    setLoading(false);
   };
 
   const onClickGameRewardClaim = async () => {
+    if (new BigNumber(userGameReward).isEqualTo('0')) {
+      setAlert({ type: 'warning', message: 'Reward is zero' });
+      return;
+    }
+
+    setLoading(true);
+
     try {
       await gameRewardClaim();
+      setAlert({ type: 'success', message: 'Game reward claim done' });
     } catch (err) {
       console.error(err);
 
       setAlert({ type: 'error', message: 'Game reward claim failed' });
     }
+
+    setLoading(false);
   };
 
   const onClickTopPlayerRewardClaim = async () => {
+    if (new BigNumber(topPlayerReward).isEqualTo('0')) {
+      setAlert({ type: 'warning', message: 'Reward is zero' });
+      return;
+    }
+
+    setLoading(true);
+
     try {
       await topPlayerRewardClaim();
+      setAlert({ type: 'success', message: 'Top player reward claim done' });
     } catch (err) {
       console.error(err);
 
       setAlert({ type: 'error', message: 'Top player reward claim failed' });
     }
+
+    setLoading(false);
   };
 
   useEffect(() => {

@@ -242,7 +242,7 @@ const MainDashboard: React.FC = () => {
           <PageTitle title={'Sip the $MOONDOG, Earn the Rewards!'} />
         </div>
         {/* Wallet */}
-        <div className="h-[738px] col-span-3 p-4 bg-[#FFFFFF] bg-opacity-50 text-black text-center">
+        <div className="h-[675px] col-span-3 p-4 bg-[#FFFFFF] bg-opacity-50 text-black text-center">
           <div className="h-full grid grid-cols-4 p-5">
             {/* Connect my wallet */}
             <div className="h-20 col-span-4 mb-4 flex justify-center items-center">
@@ -310,7 +310,7 @@ const MainDashboard: React.FC = () => {
           </div>
         </div>
         {/* Game preview & Leaderboard */}
-        <div className="w-full h-[738px] col-span-2 text-black text-center _overflow-hidden">
+        <div className="w-full h-[675px] col-span-2 text-black text-center _overflow-hidden">
           {/* Game preview */}
           <div className="flex flex-col items-center justify-center">
             <div className="w-full h-1/2 relative">
