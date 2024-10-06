@@ -34,7 +34,7 @@ export default function Step(props: StepProps) {
             <ChevronRight />
           </i>
         </div>
-        <div className="description text-[16px] font-comic-sans-ms font-bold relative left-0 right-0 md:absolute md:left-[412px] md:text-[16px]">
+        <div className="description text-[16px] font-comic-sans-ms font-bold relative left-0 right-0 md:absolute md:left-[340px] lg:left-[412px md:text-[16px]">
           {description}
         </div>
         {/* 추가 공간을 위한 여백 */}
