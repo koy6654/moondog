@@ -126,11 +126,11 @@ const Rewards: React.FC = () => {
 
   return (
     <PageLayout>
-      <div className="h-full w-full flex flex-col justify-center items-center mt-[128px]">
+      <div className="h-full w-full flex flex-col justify-center items-center mt-14 lg:mt-[128px]">
         <PageTitle title={'Put your $MOONDOG to work'} subTitle="Stake, play and earn to become part of the legend" />
 
         {/* Rewards */}
-        <div className="h-full w-full flex flex-row justify-center items-center gap-12 mt-12 px-24">
+        <div className="h-full w-full flex flex-col lg:flex-row justify-center items-center gap-12 mt-12 lg:px-24">
           <RewardBox
             title={'Staking Reward'}
             subTitle={'“Staking means family”'}
@@ -158,7 +158,7 @@ const Rewards: React.FC = () => {
         </div>
 
         {/* Where to Buy */}
-        <div className="h-full w-full flex flex-row justify-center items-center gap-12 mt-12 px-24">
+        <div className="h-full w-full lg:w-[750px] flex flex-col lg:flex-row justify-evenly items-center mt-12 px-24">
           <div className="flex flex-col justify-center items-start">
             <div className="relative flex flex-row justify-center items-center" style={{ marginBottom: 0 }}>
               <img src={WhereToBuyQuestionMark1} className="w-[20px] h-[20px] mr-5" />
@@ -175,28 +175,30 @@ const Rewards: React.FC = () => {
               </div>
             </div>
           </div>
-          <RewardSwatch
-            url={
-              'https://pancakeswap.finance/swap?outputCurrency=0xe06342e11e420e723eee4b04e3e6fe1c8c9e741c&inputCurrency=0x55d398326f99059fF775485246999027B3197955'
-            }
-          >
-            Dextools
-          </RewardSwatch>
-          <RewardSwatch
-            url={
-              'https://pancakeswap.finance/swap?outputCurrency=0xe06342e11e420e723eee4b04e3e6fe1c8c9e741c&inputCurrency=0x55d398326f99059fF775485246999027B3197955'
-            }
-          >
-            <span>DEX</span>
-            <span>Screener</span>
-          </RewardSwatch>
-          <RewardSwatch
-            url={
-              'https://pancakeswap.finance/swap?outputCurrency=0xe06342e11e420e723eee4b04e3e6fe1c8c9e741c&inputCurrency=0x55d398326f99059fF775485246999027B3197955'
-            }
-          >
-            ETC
-          </RewardSwatch>
+          <div className="flex gap-5 justify-evenly">
+            <RewardSwatch
+              url={
+                'https://pancakeswap.finance/swap?outputCurrency=0xe06342e11e420e723eee4b04e3e6fe1c8c9e741c&inputCurrency=0x55d398326f99059fF775485246999027B3197955'
+              }
+            >
+              Dextools
+            </RewardSwatch>
+            <RewardSwatch
+              url={
+                'https://pancakeswap.finance/swap?outputCurrency=0xe06342e11e420e723eee4b04e3e6fe1c8c9e741c&inputCurrency=0x55d398326f99059fF775485246999027B3197955'
+              }
+            >
+              <span>DEX</span>
+              <span>Screener</span>
+            </RewardSwatch>
+            <RewardSwatch
+              url={
+                'https://pancakeswap.finance/swap?outputCurrency=0xe06342e11e420e723eee4b04e3e6fe1c8c9e741c&inputCurrency=0x55d398326f99059fF775485246999027B3197955'
+              }
+            >
+              ETC
+            </RewardSwatch>
+          </div>
         </div>
       </div>
       {loading && <Loading />}

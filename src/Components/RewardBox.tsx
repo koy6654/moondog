@@ -12,7 +12,7 @@ interface RewardBoxProps {
 
 const RewardBox: React.FC<RewardBoxProps> = ({ title, subTitle, rewardValue, claimOnClick, children }) => {
   return (
-    <div className="h-2/3 w-1/3 flex flex-col justify-center items-center">
+    <div className="h-2/3 w-auto lg:w-1/3 flex flex-col justify-center items-center">
       <div className="flex flex-col justify-center items-center border border-[3px] rounded-[32px] px-4 pb-4">
         <div className="relative flex flex-col justify-center items-center">
           <img src={RewardBoxRamp} className="overflow-hidden w-[100px] h-[60px]" />

@@ -3,3 +3,26 @@
 @tailwind utilities;
 
 @import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap');
+
+@layer utilities {
+  p.text-stroke-xm {
+    font-size: 32px;
+    -webkit-text-stroke: 3px var(--Miscellaneous-Floating-Tab---Text-Unselected, #000);
+  }
+  p.text-stroke-sm {
+    font-size: 36px;
+    -webkit-text-stroke: 3px var(--Miscellaneous-Floating-Tab---Text-Unselected, #000);
+  }
+  p.text-stroke-md {
+    font-size: 40px;
+    -webkit-text-stroke: 4px var(--Miscellaneous-Floating-Tab---Text-Unselected, #000);
+  }
+  p.text-stroke-lg {
+    font-size: 44px;
+    -webkit-text-stroke: 4px var(--Miscellaneous-Floating-Tab---Text-Unselected, #000);
+  }
+  p.text-stroke-xl {
+    font-size: 48px;
+    -webkit-text-stroke: 4px var(--Miscellaneous-Floating-Tab---Text-Unselected, #000);
+  }
+}

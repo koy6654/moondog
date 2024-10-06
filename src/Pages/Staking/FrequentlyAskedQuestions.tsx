@@ -9,13 +9,13 @@ const FrequentlyAskedQuestions: React.FC = () => {
   return (
     <PageLayout>
       {/* Grid */}
-      <div className="h-full grid grid-rows-1 grid-cols-2 gap-[39px] mt-[128px]">
+      <div className="h-full grid grid-rows-1 grid-cols-2 gap-[39px] mt-14 lg:mt-[128px] mb-[330px] lg:mb-[250px]">
         {/* Header */}
         <div className="col-span-2 bg-blue-500 p-4 text-white text-center">
           <PageTitle title={'FAQ'} subTitle="We are the speakeasy for you to know too much" />
         </div>
 
-        <div className="col-auto font-comic-sans-ms font-bold w-full max-w-[703px]">
+        <div className="col-span-2 md:col-auto font-comic-sans-ms font-bold w-full max-w-[703px]">
           <div className="title flex flex-col items-start">
             <div className="flex items-center">
               <i>
@@ -24,7 +24,7 @@ const FrequentlyAskedQuestions: React.FC = () => {
               <h2 className="text-[32px] leading-none mx-[11px]">Basic Info.</h2>
             </div>
             <div className="my-[12px] w-full">
-              <FaqShapeLine />
+              <FaqShapeLine style={{ width: '100%' }} />
             </div>
           </div>
           <div className="faq-container py-[8px]" style={{ background: 'rgba(206, 166, 114, 0.49)' }}>
@@ -69,7 +69,7 @@ to the network’s stability and growth."
             />
           </div>
         </div>
-        <div className="col-auto font-comic-sans-ms font-bold w-full max-w-[703px]">
+        <div className="col-span-2 md:col-auto font-comic-sans-ms font-bold w-full max-w-[703px]">
           <div className="title flex flex-col items-start">
             <div className="flex items-center">
               <i>
@@ -78,7 +78,7 @@ to the network’s stability and growth."
               <h2 className="text-[32px] leading-none mx-[11px]">Game Play</h2>
             </div>
             <div className="my-[12px] w-full">
-              <FaqShapeLine />
+              <FaqShapeLine style={{ width: '100%' }} />
             </div>
           </div>
           <div className="faq-container py-[8px]" style={{ background: 'rgba(206, 166, 114, 0.49)' }}>

@@ -6,7 +6,7 @@ const UserManual: React.FC = () => {
   return (
     <PageLayout>
       {/* Grid */}
-      <div className="h-full mt-[128px]">
+      <div className="h-full mt-14 lg:mt-[128px]">
         {/* Header */}
         <div className="col-span-2 bg-blue-500 p-4 text-white text-center">
           <PageTitle title={'How to smuggle your $MOONDOG'} />
