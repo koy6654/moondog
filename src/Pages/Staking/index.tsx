@@ -3,6 +3,7 @@ import MainDashboard from './MainDashboard';
 import Rewards from './Rewards';
 import UserManual from './UserManual';
 import FrequentlyAskedQuestions from './FrequentlyAskedQuestions';
+import Footer from './Footer';
 
 const Staking: React.FC = () => {
   return (
@@ -12,6 +13,7 @@ const Staking: React.FC = () => {
       <Rewards />
       <UserManual />
       <FrequentlyAskedQuestions />
+      <Footer />
     </div>
   );
 };

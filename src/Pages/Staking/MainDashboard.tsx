@@ -247,7 +247,7 @@ const MainDashboard: React.FC = () => {
     <PageLayout>
       <div className="h-full w-full grid grid-cols-1 lg:grid-cols-5 gap-4">
         {/* PageTitle */}
-        <div className="min-h-20 w-full lg:col-span-5 p-4 text-black text-center">
+        <div className="min-h-20 w-full lg:col-span-5 p-4 text-center">
           <PageTitle title={'Sip the $MOONDOG, Earn the Rewards!'} />
         </div>
         {/* Wallet */}
@@ -283,17 +283,17 @@ const MainDashboard: React.FC = () => {
             <div className="h-full col-span-4 font-concert-one">
               <Divider />
               <div className="flex justify-between items-start py-5">
-                <div className="flex flex-col w-1/2 pl-8 pr-6">
-                  <div className="text-xl text-left">TVL</div>
-                  <div className="text-xl text-right font-comic-sans-ms">{tvl}</div>
-                  <div className="text-xl text-left">Total Staked</div>
-                  <div className="text-xl text-right font-comic-sans-ms">{totalStaked}</div>
+                <div className="flex flex-col w-1/2 h-full pl-8 pr-6">
+                  <div className="text-xl min-h-[56px] text-left">TVL</div>
+                  <div className="text-xl min-h-[56px] text-right font-comic-sans-ms">{tvl}</div>
+                  <div className="text-xl min-h-[56px] text-left">Total Staked</div>
+                  <div className="text-xl min-h-[56px] text-right font-comic-sans-ms">{totalStaked}</div>
                 </div>
-                <div className="flex flex-col w-1/2 pl-8 pr-6">
-                  <div className="text-xl text-left">Available $moondog</div>
-                  <div className="text-xl text-right font-comic-sans-ms">{userAvailableMoondog}</div>
-                  <div className="text-xl text-left">Staking Amount</div>
-                  <div className="text-xl text-right font-comic-sans-ms">{userStakingAmount}</div>
+                <div className="flex flex-col w-1/2 h-full pl-8 pr-6">
+                  <div className="text-xl min-h-[56px] text-left">Available $moondog</div>
+                  <div className="text-xl min-h-[56px] text-right font-comic-sans-ms">{userAvailableMoondog}</div>
+                  <div className="text-xl min-h-[56px] text-left">Staking Amount</div>
+                  <div className="text-xl min-h-[56px] text-right font-comic-sans-ms">{userStakingAmount}</div>
                 </div>
               </div>
               <Divider />
@@ -323,8 +323,8 @@ const MainDashboard: React.FC = () => {
           {/* Game preview */}
           <div className="flex flex-col items-center justify-center">
             <div className="w-full h-1/2 relative">
-              <div className="w-[95%] h-full rounded-[32px] bg-[#FFFFFF] shadow-lg border-4 border-black p-8 mx-auto">
-                <img src={GamePreview} alt="GamePreview" className="w-full h-full object-cover" />
+              <div className="w-[95%] h-full rounded-[32px] bg-[#FFFFFF] shadow-lg border-4 border-black p-6 mx-auto">
+                <img src={GamePreview} alt="GamePreview" className="w-full h-full object-cover rounded-[20px]" />
                 <button
                   className="absolute bottom-0 left-0 w-full h-[79.35px] bg-[#4F378B] z-10 border-4 border-black"
                   onClick={() => navigate('/game')}
@@ -350,7 +350,7 @@ const MainDashboard: React.FC = () => {
                 <div className="h-full flex flex-col font-concert-one text-left text-base">
                   <div className="h-full flex flex-row justify-start items-center mb-4">
                     <img src={LeaderboardIcon} alt="Leaderboard" className="w-[19px] h-full" />
-                    <span className="ml-2">Leaderboard</span>
+                    <span className="ml-2 text-[32px]">Leaderboard</span>
                   </div>
                   <Divider />
                   <LeaderboardTable topRankList={topRankList} />

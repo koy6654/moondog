@@ -141,6 +141,7 @@ const Rewards: React.FC = () => {
             title={'Staking Reward'}
             subTitle={'“Staking means family”'}
             rewardValue={userStakingReward}
+            backgroundColor="#FDE9CE"
             claimOnClick={onClickStakingClaim}
           >
             <img src={RewardBoxStakingReward} className="mt-2" />
@@ -149,6 +150,7 @@ const Rewards: React.FC = () => {
             title={'Game Reward'}
             subTitle={'“Get rich or die tryin’”'}
             rewardValue={userGameReward}
+            backgroundColor="#EECC9F"
             claimOnClick={onClickGameRewardClaim}
           >
             <img src={RewardBoxGameReward} />
@@ -157,6 +159,7 @@ const Rewards: React.FC = () => {
             title={'Top Player Reward'}
             subTitle={'“Who is the boss”'}
             rewardValue={topPlayerReward}
+            backgroundColor="#ECC48F"
             claimOnClick={onClickTopPlayerRewardClaim}
           >
             <img src={RewardBoxTopPlayer} />

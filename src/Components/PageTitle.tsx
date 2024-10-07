@@ -16,9 +16,11 @@ const PageTitle: React.FC<PageTitleProps> = ({ title, subTitle }) => {
           src={PageTitle1}
           alt="Left"
         />
-
         <div className="label">
-          <p className="text-wrapper text-stroke-xm sm:text-stroke-sm md:text-stroke-md lg:text-stroke-lg 2xl:text-stroke-2xl">
+          <p
+            className="text-wrapper text-[#ffffff] text-stroke-xm sm:text-stroke-sm md:text-stroke-md lg:text-stroke-lg 2xl:text-stroke-2xl"
+            style={{ fontWeight: 100 }}
+          >
             {title}
           </p>
         </div>

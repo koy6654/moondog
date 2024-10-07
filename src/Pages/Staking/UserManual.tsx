@@ -1,6 +1,6 @@
 import PageLayout from '../../Components/PageLayout';
 import PageTitle from '../../Components/PageTitle';
-import Step from './Components/UserManual/Step';
+import Step from '../../Components/Step';
 
 const UserManual: React.FC = () => {
   return (

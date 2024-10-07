@@ -3,7 +3,7 @@ import PageTitle from '../../Components/PageTitle';
 import { ReactComponent as InfoSign } from '../../Assets/Icons/InfoSign.svg';
 import { ReactComponent as FaqShapeLine } from '../../Assets/Images/FaqShapeLine.svg';
 
-import FaqBox from './Components/FAQ/FaqBox';
+import FaqBox from '../../Components/FaqBox';
 
 const FrequentlyAskedQuestions: React.FC = () => {
   return (

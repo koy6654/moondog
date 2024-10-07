@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ReactComponent as ChevronRight } from '../../../../Assets/Icons/ChevronRight.svg';
+import { ReactComponent as ChevronRight } from '../Assets/Icons/ChevronRight.svg';
 
 interface FaqBoxProps {
   question: string;
