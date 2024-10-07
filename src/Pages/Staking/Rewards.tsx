@@ -19,7 +19,7 @@ import WhereToBuyAnnotation from '../../Assets/Images/WhereToBuyAnnotation.png';
 import BigNumber from 'bignumber.js';
 
 const Rewards: React.FC = () => {
-  const { address } = useAccount();
+  const { isConnected, address } = useAccount();
   const { getUserReward, stakingClaim } = useStaking();
   const { getUserGameReward, gameRewardClaim, topPlayerRewardClaim } = useGame();
 
@@ -70,6 +70,8 @@ const Rewards: React.FC = () => {
       setAlert({ type: 'error', message: 'Staking claim failed' });
     }
 
+    await getRewards();
+
     setLoading(false);
   };
 
@@ -89,6 +91,8 @@ const Rewards: React.FC = () => {
 
       setAlert({ type: 'error', message: 'Game reward claim failed' });
     }
+
+    await getRewards();
 
     setLoading(false);
   };
@@ -110,12 +114,14 @@ const Rewards: React.FC = () => {
       setAlert({ type: 'error', message: 'Top player reward claim failed' });
     }
 
+    await getRewards();
+
     setLoading(false);
   };
 
   useEffect(() => {
     getRewards();
-  }, [userStakingReward, userGameReward, topPlayerReward]);
+  }, [isConnected, loading]);
 
   useEffect(() => {
     const timer = setTimeout(() => {

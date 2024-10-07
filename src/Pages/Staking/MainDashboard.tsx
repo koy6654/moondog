@@ -90,6 +90,7 @@ const MainDashboard: React.FC = () => {
 
     await getTvlAndTotalStaked();
     await getAvailableMoondogAndStakingAmount();
+    await getLeaderboardInfo();
 
     setEnterTokensAmount('');
     setAlert({ type: 'success', message: 'Done' });
@@ -118,6 +119,7 @@ const MainDashboard: React.FC = () => {
 
     await getTvlAndTotalStaked();
     await getAvailableMoondogAndStakingAmount();
+    await getLeaderboardInfo();
 
     setEnterTokensAmount('');
     setAlert({ type: 'success', message: 'Done' });
@@ -221,7 +223,7 @@ const MainDashboard: React.FC = () => {
   useEffect(() => {
     getTvlAndTotalStaked();
     getAvailableMoondogAndStakingAmount();
-  }, [tvl, totalStaked, isConnected]);
+  }, [isConnected, loading]);
 
   useEffect(() => {
     getLeaderboardInfo();

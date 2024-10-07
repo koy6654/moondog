@@ -22,7 +22,7 @@ const Alert: React.FC<AlertProps> = ({ type, message }) => {
   if (!type) return null;
 
   const alertStyles = {
-    success: 'bg-[##dcfce7] border border-[#4ade80] text-[#15803d]',
+    success: 'bg-[#dcfce7] border border-[#4ade80] text-[#15803d]',
     warning: 'bg-[#fef9c3] border border-[#facc15] text-[#a16207]',
     error: 'bg-[#fee2e2] border border-[#f87171] text-[#b91c1c]',
   };
