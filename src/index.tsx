@@ -17,7 +17,7 @@ root.render(
     <RecoilRoot>
       <WagmiProvider config={wagmiConfig}>
         <QueryClientProvider client={queryClient}>
-          <RainbowKitProvider>
+          <RainbowKitProvider locale={'en-US'}>
             <App />
           </RainbowKitProvider>
         </QueryClientProvider>

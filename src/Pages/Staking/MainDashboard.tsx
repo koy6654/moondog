@@ -54,14 +54,14 @@ const MainDashboard: React.FC = () => {
       return;
     }
 
-    setLoading(true);
-
     const amountLessThenZero = new BigNumber(enterTokensAmount).lte(0);
     if (enterTokensAmount === '' || amountLessThenZero) {
       setLoading(false);
       setAlert({ type: 'error', message: 'Invalid enter tokens amount' });
       return;
     }
+
+    setLoading(true);
 
     const allowanceToken = (await allowance(stakingContractAddress))?.token;
     if (allowanceToken == null) {
@@ -101,6 +101,13 @@ const MainDashboard: React.FC = () => {
     if (isConnected === false) {
       setAlert({ type: 'warning', message: 'Need to connect my wallet' });
       setLoading(false);
+      return;
+    }
+
+    const amountLessThenZero = new BigNumber(enterTokensAmount).lte(0);
+    if (enterTokensAmount === '' || amountLessThenZero) {
+      setLoading(false);
+      setAlert({ type: 'error', message: 'Invalid enter tokens amount' });
       return;
     }
 
