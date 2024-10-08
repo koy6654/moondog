@@ -8,14 +8,14 @@ const Footer: React.FC = () => {
 
   return (
     <>
-      <div className="w-full h-[85.76px] justify-between items-center inline-flex pb-40 md:pb-32 lg:pb-28">
-        <img className="w-[100px] md:w-[100px] lg:w-[120px] xl:w-[140px] 2xl:w-[180px] h-auto" src={PlaygroundTitle} />
-        <div className="w-auto text-center text-[#a2845e] text-xs font-bold font-comic-sans-ms">
+      <div className="w-full h-[85.76px] justify-between items-center inline-flex pb-40 md:pb-32 lg:pb-28 px-2 md:px-6 lg:px-8">
+        <img className="w-[80px] md:w-[100px] lg:w-[120px] xl:w-[140px] 2xl:w-[180px] h-auto" src={PlaygroundTitle} />
+        <div className="flex-grow text-center text-[#a2845e] text-xs font-bold font-comic-sans-ms">
           (C)2024. MOONDOG. All Right Reserved.
         </div>
-        <div className="w-40 h-8 relative">
-          <div className="w-8 h-8 left-0 top-0 absolute cursor-pointer" onClick={() => handleOnClick('')}>
-            <svg width="35" height="33" viewBox="0 0 35 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <div className="w-[100px] md:w-[120px] lg:w-[150px] h-8 flex flex-row justify-between items-center">
+          <div className="w-[20px] md:w-[30px] lg:w-[35px] h-8 cursor-pointer" onClick={() => handleOnClick('')}>
+            <svg height="33" viewBox="0 0 35 33" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g id="Icon/Home">
                 <rect x="1.5" y="1.38086" width="31" height="31" stroke="#A2845E" />
                 <path
@@ -29,8 +29,8 @@ const Footer: React.FC = () => {
               </g>
             </svg>
           </div>
-          <div className="w-8 h-8 left-[63px] top-0 absolute cursor-pointer" onClick={() => handleOnClick('')}>
-            <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <div className="w-[20px] md:w-[30px] lg:w-[35px] h-8 cursor-pointer" onClick={() => handleOnClick('')}>
+            <svg height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g id="Icon/Paper plane">
                 <rect x="1.5" y="1.38086" width="31" height="31" stroke="#A2845E" />
                 <path
@@ -45,8 +45,8 @@ const Footer: React.FC = () => {
               </g>
             </svg>
           </div>
-          <div className="w-8 h-8 left-[128px] top-0 absolute cursor-pointer" onClick={() => handleOnClick('')}>
-            <svg width="34" height="35" viewBox="0 0 34 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <div className="w-[20px] md:w-[30px] lg:w-[35px] h-8 cursor-pointer" onClick={() => handleOnClick('')}>
+            <svg height="35" viewBox="0 0 34 35" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g id="Icon/Twitter">
                 <g id="Vector 322">
                   <path

@@ -11,7 +11,7 @@ const FrequentlyAskedQuestions: React.FC = () => {
       {/* Grid */}
       <div className="h-full grid grid-rows-1 grid-cols-2 gap-[39px] mt-14 lg:mt-[128px] mb-[330px] lg:mb-[250px]">
         {/* Header */}
-        <div className="col-span-2 bg-blue-500 p-4 text-white text-center">
+        <div className="col-span-2 py-4 sm:px-1 text-white text-center">
           <PageTitle title={'FAQ'} subTitle="We are the speakeasy for you to know too much" />
         </div>
 

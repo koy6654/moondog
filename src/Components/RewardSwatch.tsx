@@ -8,7 +8,7 @@ interface RewardSwatchProps {
 
 const RewardSwatch: React.FC<RewardSwatchProps> = ({ url, children }) => {
   const handleOnClick = () => {
-    window.open(url, '_blank'); // 새 창에서 URL 열기
+    window.open(url, '_blank');
   };
 
   return (

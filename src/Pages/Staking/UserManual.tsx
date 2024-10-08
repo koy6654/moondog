@@ -8,7 +8,7 @@ const UserManual: React.FC = () => {
       {/* Grid */}
       <div className="h-full mt-14 lg:mt-[128px]">
         {/* Header */}
-        <div className="col-span-2 bg-blue-500 p-4 text-white text-center">
+        <div className="col-span-2 py-4 sm:px-1 text-white text-center">
           <PageTitle title={'How to smuggle your $MOONDOG'} />
         </div>
         <div className="step-container mt-[56px]">

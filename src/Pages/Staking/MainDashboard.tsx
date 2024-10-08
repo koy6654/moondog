@@ -247,7 +247,7 @@ const MainDashboard: React.FC = () => {
     <PageLayout>
       <div className="h-full w-full grid grid-cols-1 lg:grid-cols-5 gap-4">
         {/* PageTitle */}
-        <div className="min-h-20 w-full lg:col-span-5 p-4 text-center">
+        <div className="min-h-20 w-full lg:col-span-5 py-4 sm:px-1 text-center">
           <PageTitle title={'Sip the $MOONDOG, Earn the Rewards!'} />
         </div>
         {/* Wallet */}
