@@ -1,5 +1,9 @@
 import PlaygroundTitle from '../../Assets/Images/PlaygroundTitle.png';
 import Divider from '../../Components/Divider';
+import PageTitle from '../../Components/PageTitle';
+import PageTitle2 from '../../Components/PageTitle2';
+import PageTitle3 from '../../Components/PageTitle3';
+import PageTitle4 from '../../Components/PageTitle4';
 
 const Playground: React.FC = () => {
   return (
@@ -16,6 +20,13 @@ const Playground: React.FC = () => {
           </div>
           <Divider />
         </div>
+      </div>
+      {/* PageTitle Test */}
+      <div className="w-full flex flex-col justify-center items-center">
+        <PageTitle title={'Sip the $MOONDOG, Earn the Rewards!'} />
+        <PageTitle2 title={'Sip the $MOONDOG, Earn the Rewards!'} />
+        <PageTitle3 title={'Sip the $MOONDOG, Earn the Rewards!'} />
+        <PageTitle4 title={'Sip the $MOONDOG, Earn the Rewards!'} />
       </div>
     </>
   );

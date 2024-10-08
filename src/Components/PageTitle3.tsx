@@ -18,19 +18,18 @@ const PageTitle: React.FC<PageTitleProps> = ({ title, subTitle }) => {
         />
         <div className="label mx-[0px] sm:mx-[0px] md:mx-[20px] lg:mx-[30px]">
           <p
-            className="font-concert-one text-center text-[48px] font-normal leading-normal"
+            className="font-comic-sans-ms text-center text-[48px] font-normal leading-normal"
             style={{
               color: 'rgb(255, 255, 255)',
-              fontWeight: 400,
+              fontWeight: 700,
               textShadow: `
                 -2px -2px 0 rgba(0, 0, 0, 1),
                 2px -2px 0 rgba(0, 0, 0, 1),
                 -2px 2px 0 rgba(0, 0, 0, 1),
                 2px 2px 0 rgba(0, 0, 0, 1)
               `,
-              WebkitTextStrokeWidth: '2px',
+              WebkitTextStrokeWidth: '1px',
               WebkitTextStrokeColor: 'black',
-              letterSpacing: '-1px',
             }}
           >
             {title}

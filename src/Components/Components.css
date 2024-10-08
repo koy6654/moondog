@@ -84,27 +84,8 @@
 }
 
 .label {
-  height: auto;
   display: flex;
   align-items: center;
-}
-
-@font-face {
-  font-family: 'comic-sans-ms-bold';
-  src: url('../Assets/Fonts/CosmicSansMsBold.ttf') format('truetype');
-  font-style: normal;
-}
-
-.text-wrapper {
-  color: #fff;
-  text-align: center;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  -webkit-text-stroke: 4px var(--Miscellaneous-Floating-Tab---Text-Unselected, #000);
-  font-family: 'comic-sans-ms-bold';
-  font-size: 48px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
 }
 
 /* .leaderboard-scrollbar::-webkit-scrollbar {

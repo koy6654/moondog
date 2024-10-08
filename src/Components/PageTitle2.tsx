@@ -18,7 +18,7 @@ const PageTitle: React.FC<PageTitleProps> = ({ title, subTitle }) => {
         />
         <div className="label mx-[0px] sm:mx-[0px] md:mx-[20px] lg:mx-[30px]">
           <p
-            className="font-concert-one text-center text-[48px] font-normal leading-normal"
+            className="font-concert-one text-center text-[60px] font-normal leading-normal"
             style={{
               color: 'rgb(255, 255, 255)',
               fontWeight: 400,
