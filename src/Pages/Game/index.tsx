@@ -6,7 +6,7 @@ import GameWalletAndScore from './GameWalletAndScore';
 
 const Staking: React.FC = () => {
   return (
-    <div className="h-full w-full overflow-auto bg-game-texture bg-[#E3C094] bg-cover bg-center flex flex-col">
+    <div className="h-full w-full overflow-auto bg-game-texture flex flex-col items-center">
       <Playground />
       <GameTitle />
       <GameArea />
