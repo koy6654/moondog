@@ -8,7 +8,7 @@ const Staking: React.FC = () => {
   return (
     <div className="h-full w-full overflow-auto bg-game-texture flex flex-col items-center">
       <Playground />
-      <GameTitle />
+      <GameTitle title={'Earn points to claim $MOONDOG'} />
       <GameArea />
       <GameWalletAndScore />
       <GameLeaderboard />

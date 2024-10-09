@@ -9,12 +9,16 @@ export interface TopRankList {
 
 interface LeaderboardTableProps {
   topRankList: TopRankList[];
+  contentHeight?: number;
 }
 
-const LeaderboardTable: React.FC<LeaderboardTableProps> = ({ topRankList }) => {
+const LeaderboardTable: React.FC<LeaderboardTableProps> = ({ topRankList, contentHeight }) => {
   return (
     <div className="overflow-x-auto mt-6 relative">
-      <div className="max-w-full h-60 overflow-y-auto leaderboard-scrollbar relative pr-[20px]">
+      <div
+        className="max-w-full overflow-y-auto leaderboard-scrollbar relative pr-[20px]"
+        style={{ height: contentHeight ? `${contentHeight}px` : '240px' }}
+      >
         <table className="min-w-full">
           <thead>
             <tr className="bg-[#EECCA0] rounded-[14px]">

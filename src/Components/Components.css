@@ -120,3 +120,24 @@
 .leaderboard-scrollbar::-webkit-scrollbar-button:vertical:decrement {
   background: url('../Assets/Images/LeaderboardArrowUp.png') no-repeat bottom center;
 }
+
+.game-faq-button {
+  background-image: url('../Assets/Images/FaqButton.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+@media (max-width: 1024px) {
+  .game-faq-button {
+    width: 100%;
+    height: 100px;
+    background-image: none;
+    background-color: #fc7d07;
+    border-radius: 32px;
+    border-width: 3px;
+    border-color: black;
+    border-style: solid;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+  }
+}
