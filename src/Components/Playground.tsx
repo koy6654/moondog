@@ -1,5 +1,5 @@
-import PlaygroundTitle from '../../Assets/Images/PlaygroundTitle.png';
-import Divider from '../../Components/Divider';
+import PlaygroundTitle from '../Assets/Images/PlaygroundTitle.png';
+import Divider from './Divider';
 
 const Playground: React.FC = () => {
   return (

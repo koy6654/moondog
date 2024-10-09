@@ -4,25 +4,26 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap');
 
-@layer utilities {
-  p.text-stroke-xm {
-    font-size: 32px;
-    -webkit-text-stroke: 3px var(--Miscellaneous-Floating-Tab---Text-Unselected, #000);
-  }
-  p.text-stroke-sm {
-    font-size: 36px;
-    -webkit-text-stroke: 3px var(--Miscellaneous-Floating-Tab---Text-Unselected, #000);
-  }
-  p.text-stroke-md {
-    font-size: 40px;
-    -webkit-text-stroke: 4px var(--Miscellaneous-Floating-Tab---Text-Unselected, #000);
-  }
-  p.text-stroke-lg {
-    font-size: 44px;
-    -webkit-text-stroke: 4px var(--Miscellaneous-Floating-Tab---Text-Unselected, #000);
-  }
-  p.text-stroke-xl {
-    font-size: 48px;
-    -webkit-text-stroke: 4px var(--Miscellaneous-Floating-Tab---Text-Unselected, #000);
-  }
+.bg-common-texture {
+  /* background-position: center; */
+  background-repeat: no-repeat;
+  background-blend-mode: multiply;
+}
+
+/**
+ * @warning
+ * - Unknown at rule @applycss(unknownAtRules) 
+ * - vscode extensions에 Tailwind CSS IntelliSense 검색하고 설치
+ */
+.bg-staking-texture {
+  @apply bg-common-texture;
+  background-color: #e3c094;
+  background-size: cover;
+}
+
+.bg-game-texture {
+  @apply bg-common-texture;
+  /* 다중 배경 설정 (그라데이션 + 이미지) */
+  background-image: linear-gradient(180deg, #f1d544 0%, #f3b004 100%), url('./Assets/Images/GameBackground.png');
+  background-size: contain;
 }

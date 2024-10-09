@@ -7,7 +7,7 @@ module.exports = {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-        texture: "url('./Assets/Images/Background.png')",
+        'staking-texture': "url('./Assets/Images/Background.png')",
       },
       fontFamily: {
         'concert-one': ['"Concert One"', 'cursive', 'sans-serif'],
