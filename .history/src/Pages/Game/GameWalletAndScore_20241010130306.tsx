@@ -1,18 +1,12 @@
 import React from 'react';
 import PageLayout from '../../Components/PageLayout';
 import { ReactComponent as Bulb } from '../../Assets/Icons/Bulb.svg';
-import { useNavigate } from 'react-router-dom';
+
 import FaqButton from '../../Assets/Images/FaqButton.svg';
 import GameShapeRectangle from '../../Assets/Images/GameShapeRectangle.svg';
 import Gem from '../../Assets/Images/Gem.png';
 
 export default function GameWalletAndScore() {
-  const navigate = useNavigate();
-
-  const handleButtonClick = () => {
-    navigate('/#section-faq');
-  };
-
   return (
     <PageLayout>
       <div className="flex flex-col lg:flex-row justify-center items-center mt-[26px] mb-[60px]">
@@ -53,7 +47,6 @@ export default function GameWalletAndScore() {
 
         {/* 오른쪽: FAQ 버튼 */}
         <button
-          onClick={handleButtonClick}
           className="game-faq-button w-[225px] h-[180px] mt-[10px] lg:mt-0"
           // style={{
           //   backgroundImage: `url(${FaqButton})`,

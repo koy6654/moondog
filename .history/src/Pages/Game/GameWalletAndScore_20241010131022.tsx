@@ -10,7 +10,7 @@ export default function GameWalletAndScore() {
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
-    navigate('/#section-faq');
+    navigate('/');
   };
 
   return (

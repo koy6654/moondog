@@ -10,7 +10,8 @@ export default function GameWalletAndScore() {
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
-    navigate('/#section-faq');
+    // 페이지 이동
+    navigate('/'); // 이동할 경로를 적어줌
   };
 
   return (
@@ -53,7 +54,6 @@ export default function GameWalletAndScore() {
 
         {/* 오른쪽: FAQ 버튼 */}
         <button
-          onClick={handleButtonClick}
           className="game-faq-button w-[225px] h-[180px] mt-[10px] lg:mt-0"
           // style={{
           //   backgroundImage: `url(${FaqButton})`,
