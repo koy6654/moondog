@@ -14,9 +14,10 @@ export default function GameLeaderboard() {
   const [loading, setLoading] = useRecoilState(loadingRecoil);
 
   const getLeaderboardInfo = async () => {
-    const { data: list } = await axios.post<GetInfoResponse>(
-      `${process.env.REACT_APP_API_DOMAIN}/api/GetInfo?startPage=0&take=10`
-    );
+    const { data: list } = await axios.post<GetInfoResponse>(`${process.env.REACT_APP_API_DOMAIN}/api/GetInfo`, {
+      startPage: 0,
+      take: 100,
+    });
 
     setTopRankList(list.scoreInfo);
   };
