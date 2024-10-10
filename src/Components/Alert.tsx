@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 export interface AlertProps {
   type: 'success' | 'warning' | 'error' | null;
@@ -6,19 +6,6 @@ export interface AlertProps {
 }
 
 const Alert: React.FC<AlertProps> = ({ type, message }) => {
-  // const [visible, setVisible] = useState(true);
-
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     setVisible(false);
-  //   }, 3000);
-
-  //   console.log('exec');
-
-  //   return () => clearTimeout(timer);
-  // }, []);
-
-  // if (!visible || !type) return null;
   if (!type) return null;
 
   const alertStyles = {

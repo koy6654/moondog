@@ -63,15 +63,19 @@ const Rewards: React.FC = () => {
 
     try {
       await stakingClaim();
-      setAlert({ type: 'success', message: 'Staking claim done' });
     } catch (err) {
       console.error(err);
 
       setAlert({ type: 'error', message: 'Staking claim failed' });
+      setLoading(false);
+      return;
     }
+
+    await new Promise((resolve) => setTimeout(resolve, 2000));
 
     await getRewards();
 
+    setAlert({ type: 'success', message: 'Staking claim done' });
     setLoading(false);
   };
 
@@ -85,15 +89,19 @@ const Rewards: React.FC = () => {
 
     try {
       await gameRewardClaim();
-      setAlert({ type: 'success', message: 'Game reward claim done' });
     } catch (err) {
       console.error(err);
 
       setAlert({ type: 'error', message: 'Game reward claim failed' });
+      setLoading(false);
+      return;
     }
+
+    await new Promise((resolve) => setTimeout(resolve, 2000));
 
     await getRewards();
 
+    setAlert({ type: 'success', message: 'Game reward claim done' });
     setLoading(false);
   };
 
@@ -107,15 +115,19 @@ const Rewards: React.FC = () => {
 
     try {
       await topPlayerRewardClaim();
-      setAlert({ type: 'success', message: 'Top player reward claim done' });
     } catch (err) {
       console.error(err);
 
       setAlert({ type: 'error', message: 'Top player reward claim failed' });
+      setLoading(false);
+      return;
     }
+
+    await new Promise((resolve) => setTimeout(resolve, 2000));
 
     await getRewards();
 
+    setAlert({ type: 'success', message: 'Top player reward claim done' });
     setLoading(false);
   };
 

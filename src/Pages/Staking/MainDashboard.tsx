@@ -93,7 +93,7 @@ const MainDashboard: React.FC = () => {
     await getLeaderboardInfo();
 
     setEnterTokensAmount('');
-    setAlert({ type: 'success', message: 'Done' });
+    setAlert({ type: 'success', message: 'Staking done' });
     setLoading(false);
   };
 
@@ -120,6 +120,7 @@ const MainDashboard: React.FC = () => {
 
       setAlert({ type: 'error', message: 'Unstaking failed' });
       setLoading(false);
+      return;
     }
 
     await new Promise((resolve) => setTimeout(resolve, 2000));
@@ -129,7 +130,7 @@ const MainDashboard: React.FC = () => {
     await getLeaderboardInfo();
 
     setEnterTokensAmount('');
-    setAlert({ type: 'success', message: 'Done' });
+    setAlert({ type: 'success', message: 'Unstaking done' });
     setLoading(false);
   };
 
