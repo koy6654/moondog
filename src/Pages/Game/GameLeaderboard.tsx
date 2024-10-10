@@ -1,69 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import PageLayout from '../../Components/PageLayout';
-import LeaderboardTable, { TopRankList } from '../../Components/LeaderboardTable';
+import LeaderboardTable, { GetInfoResponse, TopRankList } from '../../Components/LeaderboardTable';
 
 import LeaderboardIcon from '../../Assets/Images/Leaderboard.png';
 import Divider from '../../Components/Divider';
 import Loading from '../../Components/Loading';
 import { useRecoilState } from 'recoil';
 import { loadingRecoil } from '../../State';
+import axios from 'axios';
 
 export default function GameLeaderboard() {
   const [topRankList, setTopRankList] = useState<TopRankList[]>([]);
   const [loading, setLoading] = useRecoilState(loadingRecoil);
 
   const getLeaderboardInfo = async () => {
-    // TODO
-    // const { data: list } = await axios.get<string>(
-    //   `${process.env.REACT_APP_API_DOMAIN}/api/GetInfo?startPage=0&take=10`
-    // );
-    const list = {
-      errCode: 0,
-      message: 'message',
-      totalCount: 3,
-      scoreInfo: [
-        {
-          address: '0x121211',
-          score: 500,
-        },
-        {
-          address: '0x1234',
-          score: 200,
-        },
-        {
-          address: '0x12345',
-          score: 100,
-        },
-        {
-          address: '0x12345',
-          score: 100,
-        },
-        {
-          address: '0x12345',
-          score: 100,
-        },
-        {
-          address: '0x12345',
-          score: 100,
-        },
-        {
-          address: '0x12345',
-          score: 100,
-        },
-        {
-          address: '0x12345',
-          score: 100,
-        },
-        {
-          address: '0x12345',
-          score: 100,
-        },
-        {
-          address: '0x12345',
-          score: 100,
-        },
-      ],
-    };
+    const { data: list } = await axios.post<GetInfoResponse>(
+      `${process.env.REACT_APP_API_DOMAIN}/api/GetInfo?startPage=0&take=10`
+    );
 
     setTopRankList(list.scoreInfo);
   };

@@ -27,7 +27,7 @@ import UnStakingUp from '../../Assets/Images/UnStakingUp.png';
 import GamePreview from '../../Assets/Images/GamePreview.png';
 import LeaderboardIcon from '../../Assets/Images/Leaderboard.png';
 import Divider from '../../Components/Divider';
-import LeaderboardTable, { TopRankList } from '../../Components/LeaderboardTable';
+import LeaderboardTable, { GetInfoResponse, TopRankList } from '../../Components/LeaderboardTable';
 
 const MainDashboard: React.FC = () => {
   const { address, isConnected } = useAccount();
@@ -138,7 +138,7 @@ const MainDashboard: React.FC = () => {
     const totalBigNumber = new BigNumber(total);
 
     try {
-      const { data: usdPrice } = await axios.get<string>(`${process.env.REACT_APP_API_DOMAIN}/api/token/setStart`);
+      const { data: usdPrice } = await axios.get<string>(`${process.env.REACT_APP_API_DOMAIN}/api/token/usd`);
 
       const tvlBigNumber = new BigNumber(usdPrice).multipliedBy(totalBigNumber);
 
@@ -172,57 +172,10 @@ const MainDashboard: React.FC = () => {
   };
 
   const getLeaderboardInfo = async () => {
-    // TODO
-    // const { data: list } = await axios.get<string>(
-    //   `${process.env.REACT_APP_API_DOMAIN}/api/GetInfo?startPage=0&take=10`
-    // );
-    const list = {
-      errCode: 0,
-      message: 'message',
-      totalCount: 3,
-      scoreInfo: [
-        {
-          address: '0x121211',
-          score: 500,
-        },
-        {
-          address: '0x1234',
-          score: 200,
-        },
-        {
-          address: '0x12345',
-          score: 100,
-        },
-        {
-          address: '0x12345',
-          score: 100,
-        },
-        {
-          address: '0x12345',
-          score: 100,
-        },
-        {
-          address: '0x12345',
-          score: 100,
-        },
-        {
-          address: '0x12345',
-          score: 100,
-        },
-        {
-          address: '0x12345',
-          score: 100,
-        },
-        {
-          address: '0x12345',
-          score: 100,
-        },
-        {
-          address: '0x12345',
-          score: 100,
-        },
-      ],
-    };
+    const { data: list } = await axios.post<GetInfoResponse>(`${process.env.REACT_APP_API_DOMAIN}/api/GetInfo`, {
+      startPage: 0,
+      take: 10,
+    });
 
     setTopRankList(list.scoreInfo);
   };

@@ -12,6 +12,13 @@ interface LeaderboardTableProps {
   contentHeight?: number;
 }
 
+export interface GetInfoResponse {
+  errCode: number;
+  message: string;
+  totalCount: number;
+  scoreInfo: TopRankList[];
+}
+
 const LeaderboardTable: React.FC<LeaderboardTableProps> = ({ topRankList, contentHeight }) => {
   return (
     <div className="overflow-x-auto mt-6 relative">

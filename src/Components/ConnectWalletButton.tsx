@@ -30,7 +30,7 @@ const ConnectMyWalletButton = () => {
                 return (
                   <div className="h-full w-full">
                     <button className="button" onClick={openConnectModal}>
-                      <div className="flex justify-center items-center space-x-8">
+                      <div className="flex justify-center items-center space-x-0 md:space-x-8">
                         <img src={FingerLeft} alt="Left" className="w-8 h-8" />
                         <span className="font-concert-one text-3xl">Connect Wallet</span>
                         <img src={FingerRight} alt="Right" className="w-8 h-8" />
