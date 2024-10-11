@@ -23,10 +23,10 @@ const LeaderboardTable: React.FC<LeaderboardTableProps> = ({ topRankList, conten
   return (
     <div className="overflow-x-auto mt-6 relative">
       <div
-        className="max-w-full overflow-y-auto leaderboard-scrollbar relative pr-[20px]"
+        className="max-w-full overflow-y-auto leaderboard-scrollbar relative pr-[15px]"
         style={{ height: contentHeight ? `${contentHeight}px` : '240px' }}
       >
-        <table className="min-w-full">
+        <table className="min-w-full max-w-full">
           <thead>
             <tr className="bg-[#EECCA0] rounded-[14px]">
               <th className="p-4 rounded-l-[12px]">Rank</th>
@@ -49,7 +49,7 @@ const LeaderboardTable: React.FC<LeaderboardTableProps> = ({ topRankList, conten
           </tbody>
         </table>
       </div>
-      <div className="absolute top-0 right-[24px]">
+      <div className="absolute top-0 right-0 flex justify-end">
         <i>
           <ScrollVerticalLine height={240} />
         </i>

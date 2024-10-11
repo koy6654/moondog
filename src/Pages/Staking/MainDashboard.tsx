@@ -313,6 +313,9 @@ const MainDashboard: React.FC = () => {
             </div>
           </div>
         </div>
+        <div className="lg:col-span-5 text-[#545454] text-[16px] font-comic-sans-ms">
+          *$MOONDOG will be staked minimum of 2 weeks before it is available to unstake.
+        </div>
       </div>
       {loading && <Loading />}
       <Alert type={alert.type} message={alert.message} />

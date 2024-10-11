@@ -42,9 +42,8 @@ const FrequentlyAskedQuestions: React.FC = () => {
           <div className="faq-container py-[8px]" style={{ background: 'rgba(206, 166, 114, 0.49)' }}>
             <FaqBox
               question="Q. What is $MOONDOG staking?"
-              answer="Moondog staking allows users to lock their $MOONDOG tokens for a specified period
-in return for earning rewards. This incentivizes long-term holding and contributes 
-to the network’s stability and growth."
+              answer="Moondog staking allows users to lock their $MOONDOG tokens for 2 weeks in return 
+              for earning rewards"
             />
             <FaqBox
               question="Q. What is Moondog game?"
