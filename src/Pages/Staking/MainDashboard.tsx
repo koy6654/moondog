@@ -205,8 +205,8 @@ const MainDashboard: React.FC = () => {
           <PageTitle title={'Sip the $MOONDOG, Earn the Rewards!'} />
         </div>
         {/* Wallet */}
-        <div className="lg:col-span-3 p-4 bg-[#FFFFFF] bg-opacity-50 text-black text-center">
-          <div className="h-full grid grid-cols-4 p-5">
+        <div className="lg:col-span-3 mb-12">
+          <div className="p-4 bg-[#FFFFFF] bg-opacity-50 text-black text-center h-full grid grid-cols-4 p-5">
             {/* Connect my wallet */}
             <div className="h-20 col-span-4 mb-4 flex justify-center items-center">
               <ConnectWalletButton />
@@ -271,9 +271,12 @@ const MainDashboard: React.FC = () => {
               </div>
             </div>
           </div>
+          <div className="text-[#545454] text-[16px] font-comic-sans-ms">
+            *$MOONDOG will be staked minimum of 2 weeks before it is available to unstake.
+          </div>
         </div>
         {/* Game preview & Leaderboard */}
-        <div className="w-full lg:col-span-2 text-black text-center _overflow-hidden">
+        <div className="w-full lg:col-span-2 text-black text-center _overflow-hidden mb-12">
           {/* Game preview */}
           <div className="flex flex-col items-center justify-center">
             <div className="w-full h-1/2 relative">
@@ -312,9 +315,6 @@ const MainDashboard: React.FC = () => {
               </div>
             </div>
           </div>
-        </div>
-        <div className="lg:col-span-5 text-[#545454] text-[16px] font-comic-sans-ms">
-          *$MOONDOG will be staked minimum of 2 weeks before it is available to unstake.
         </div>
       </div>
       {loading && <Loading />}
