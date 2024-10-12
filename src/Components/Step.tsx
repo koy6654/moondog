@@ -28,7 +28,7 @@ export default function Step(props: StepProps) {
         >
           <span className="ml-[-10px] mt-[-5px]">Step {stepNumber}</span>
         </div>
-        <div className="flex justify-start items-center">
+        <div className="flex justify-start items-center w-[calc(100%-105px)]">
           <h4 className="title font-normal text-black text-[26px] tracking-[0] leading-[28px] sm:leading-[33px]">
             {title}
           </h4>
@@ -40,7 +40,6 @@ export default function Step(props: StepProps) {
           {description}
         </div>
         {/* 추가 공간을 위한 여백 */}
-        <div className="block md:hidden h-0.5"></div>
       </div>
     </div>
   );
