@@ -7,7 +7,7 @@ import Playground from '../../Components/Playground';
 
 const Staking: React.FC = () => {
   return (
-    <div className="h-full w-full overflow-auto bg-staking-texture flex flex-col">
+    <div className="h-full w-full relative pb-[298px] overflow-auto bg-staking-texture flex flex-col">
       <Playground />
       <MainDashboard />
       <Rewards />

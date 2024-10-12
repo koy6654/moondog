@@ -10,33 +10,27 @@ interface PageTitleProps {
 const PageTitle: React.FC<PageTitleProps> = ({ title, subTitle }) => {
   return (
     <div className="w-full h-full flex flex-col justify-center items-center">
-      <div className="flex justify-between items-center">
+      <div className="flex justify-center items-center">
         <img
-          className="flex w-[50px] h-[50px] sm:w-[105px] sm:h-[105px] md:w-[90px] md:h-[90px] lg:w-[75px] lg:h-[75px] xl:w-[60px] xl:h-[60px]"
+          className="flex w-[40px] h-[40px] sm:w-[44px] sm:h-[44px] md:w-[48px] md:h-[48px] lg:w-[52px] lg:h-[52px] xl:w-[56px] xl:h-[56px] 2xl:w-[60px] 2xl:h-[60px]"
           src={PageTitle1}
           alt="Left"
         />
-        <div className="label mx-[0px] sm:mx-[0px] md:mx-[20px] lg:mx-[30px]">
+        <div className="label mx-[5px] sm:mx-[10px] md:mx-[20px] lg:mx-[30px]">
           <p
-            className="font-comic-sans-ms text-center text-[48px] font-normal leading-normal"
-            style={{
-              color: 'rgb(255, 255, 255)',
-              fontWeight: 700,
-              textShadow: `
-                -2px -2px 0 rgba(0, 0, 0, 1),
-                2px -2px 0 rgba(0, 0, 0, 1),
-                -2px 2px 0 rgba(0, 0, 0, 1),
-                2px 2px 0 rgba(0, 0, 0, 1)
-              `,
-              WebkitTextStrokeWidth: '1px',
-              WebkitTextStrokeColor: 'black',
-            }}
+            className="font-comic-sans-ms-bold font-bold leading-normal text-[#FFF] text-center 
+          text-shadow-1px text-[20px] 
+          sm:text-shadow-2px sm:text-[24px]
+          md:text-shadow-2px md:text-[28px] 
+          lg:text-shadow-3px lg:text-[32px]
+          xl:text-shadow-3px xl:text-[46px]
+          2xl:text-shadow-3px 2xl:text-[42px]"
           >
             {title}
           </p>
         </div>
         <img
-          className="flex w-[50px] h-[50px] sm:w-[105px] sm:h-[105px] md:w-[90px] md:h-[90px] lg:w-[75px] lg:h-[75px] xl:w-[60px] xl:h-[60px]"
+          className="flex w-[40px] h-[40px] sm:w-[44px] sm:h-[44px] md:w-[48px] md:h-[48px] lg:w-[52px] lg:h-[52px] xl:w-[56px] xl:h-[56px] 2xl:w-[60px] 2xl:h-[60px]"
           src={PageTitle2}
           alt="Right"
         />

@@ -21,10 +21,10 @@ const FrequentlyAskedQuestions: React.FC = () => {
   return (
     <PageLayout>
       {/* Grid */}
-      <div className="h-full grid grid-rows-1 grid-cols-2 gap-[39px] mt-14 lg:mt-[128px] mb-[330px] lg:mb-[250px]">
+      <div className="z-20 h-full grid grid-rows-1 grid-cols-2 gap-[39px] mt-8 sm:mt-14 lg:mt-[128px]">
         {/* Header */}
         <div id="section-faq" className="col-span-2 py-4 sm:px-1 text-white text-center">
-          <PageTitle title={'FAQ'} subTitle="We are the speakeasy for you to know too much" />
+          <PageTitle title="FAQ" />
         </div>
 
         <div className="col-span-2 md:col-auto font-comic-sans-ms font-bold w-full max-w-[703px]">

@@ -11,7 +11,7 @@ const Playground: React.FC = () => {
             <img
               src={PlaygroundTitle}
               alt="PlaygroundTitle"
-              className="w-[320px] md:w-[300px] lg:w-[280px] xl:w-[260px] 2xl:w-[240px] h-auto !max-w-none"
+              className="w-[160px] sm:w-[180px] md:w-[200px] xl:w-[220px] 2xl:w-[240px] h-auto !max-w-none"
             />
           </div>
           <Divider />

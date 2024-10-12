@@ -4,6 +4,21 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap');
 
+@font-face {
+  font-family: 'ComicSansMSBold';
+  src: url('./Assets/Fonts/CosmicSansMsBold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+html,
+body {
+  max-width: 100%;
+  min-width: 360px;
+  overflow-x: hidden;
+}
+
 .bg-common-texture {
   background-repeat: no-repeat;
   background-position: top center;

@@ -5,13 +5,13 @@ import Step from '../../Components/Step';
 const UserManual: React.FC = () => {
   return (
     <PageLayout>
-      {/* Grid */}
-      <div className="h-full mt-14 lg:mt-[128px]">
+      <div className="h-full w-full flex flex-col justify-center items-center mt-10 sm:mt-14 lg:mt-[128px]">
+        {/* <div className="h-full w-full flex flex-col justify-center items-center sm:mt-14 lg:mt-[128px]"> */}
         {/* Header */}
-        <div className="col-span-2 py-4 sm:px-1 text-white text-center">
+        <div className="py-4 sm:px-1 text-white text-center">
           <PageTitle title={'How to smuggle your $MOONDOG'} />
         </div>
-        <div className="step-container mt-[56px]">
+        <div className="step-container w-full max-w-[1244px] mt-[15px] lg:mt-[56px]">
           <Step
             stepNumber="01"
             title={

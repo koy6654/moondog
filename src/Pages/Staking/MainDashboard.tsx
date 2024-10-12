@@ -255,14 +255,14 @@ const MainDashboard: React.FC = () => {
             <div className="h-full col-span-4">
               <div className="flex justify-center items-center gap-10">
                 <button
-                  className="flex justify-center items-center bg-[#FFCC00] w-[390px] h-[70px] border-2 border-solid border-black shadow-[4px_4px_0px_#B1B8BD] rounded-[1.5px] font-concert-one text-2xl"
+                  className="flex justify-center items-center bg-[#FFCC00] w-[390px] h-[70px] border-2 border-solid border-black shadow-[4px_4px_0px_#B1B8BD] rounded-[1.5px] font-concert-one text-xl sm:text-2xl"
                   onClick={onClickStaking}
                 >
                   <img src={StakingDown} alt="Icon" className="w-5 h-5 mr-2" />
                   <span>STAKE</span>
                 </button>
                 <button
-                  className="flex justify-center items-center bg-[#8E8E93] w-[390px] h-[70px] border-2 border-solid border-black shadow-[4px_4px_0px_#B1B8BD] rounded-[1.5px] font-concert-one text-2xl"
+                  className="flex justify-center items-center bg-[#8E8E93] w-[390px] h-[70px] border-2 border-solid border-black shadow-[4px_4px_0px_#B1B8BD] rounded-[1.5px] font-concert-one text-xl sm:text-2xl"
                   onClick={onClickUnstaking}
                 >
                   <img src={UnStakingUp} alt="Icon" className="w-5 h-5 mr-2" />
@@ -280,10 +280,10 @@ const MainDashboard: React.FC = () => {
           {/* Game preview */}
           <div className="flex flex-col items-center justify-center">
             <div className="w-full h-1/2 relative">
-              <div className="w-[95%] h-full rounded-[32px] bg-[#FFFFFF] shadow-lg border-4 border-black p-6 mx-auto">
+              <div className="w-[95%] h-full rounded-[32px] bg-[#FFFFFF] shadow-lg border-4 border-black p-[9px] sm:p-6 mx-auto">
                 <img src={GamePreview} alt="GamePreview" className="w-full h-full object-cover rounded-[20px]" />
                 <button
-                  className="absolute bottom-0 left-0 w-full h-[79.35px] bg-[#4F378B] z-10 border-4 border-black"
+                  className="absolute bottom-[-33px] sm:bottom-0 left-0 w-full h-[79.35px] bg-[#4F378B] z-10 border-4 border-black"
                   onClick={() => navigate('/game')}
                 >
                   <div className="flex flex-row justify-center items-center">
@@ -302,7 +302,7 @@ const MainDashboard: React.FC = () => {
               </div>
             </div>
             {/* Leaderboard */}
-            <div className="w-full h-1/2 mt-4">
+            <div className="w-full h-1/2 mt-12 sm:mt-4">
               <div className="w-[95%] h-full bg-[#FFFFFF] shadow-lg border-4 border-black p-8 mx-auto">
                 <div className="h-full flex flex-col font-concert-one text-left text-base">
                   <div className="h-full flex flex-row justify-start items-center mb-4">

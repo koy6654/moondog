@@ -16,9 +16,9 @@ export default function Step(props: StepProps) {
   const { stepNumber, title, description, chevronRightMargin = 0 } = props;
   return (
     <div className={`step-${stepNumber}`}>
-      <div className="flex flex-col items-start md:flex-row md:items-center relative mb-[15px] max-w-[1196px] h-auto md:h-[90px] bg-[#FFF] border-[3px] border-solid border-black rounded-[32px] font-concert-one text-black text-lg pl-[88px] pr-[0px] md:pl-[88px]">
+      <div className="flex flex-col items-start md:flex-row md:items-center relative mb-[15px]  h-auto md:h-[90px] bg-[#FFF] border-[3px] border-solid border-black rounded-[32px] font-concert-one text-black text-lg pl-[105px] md:pl-[88px] pr-[0px]">
         <div
-          className="absolute left-[-5%] flex justify-center items-center font-bold w-[111px] h-[55px]"
+          className="absolute left-[-3%] sm:left-[-5%] flex justify-center items-center font-bold w-[111px] h-[55px]"
           style={{
             backgroundImage: `url(${BoxArrowRight})`,
             backgroundSize: 'contain',
@@ -29,7 +29,9 @@ export default function Step(props: StepProps) {
           <span className="ml-[-10px] mt-[-5px]">Step {stepNumber}</span>
         </div>
         <div className="flex justify-start items-center">
-          <h4 className="title font-normal text-black text-[26px] tracking-[0] leading-[33px]">{title}</h4>
+          <h4 className="title font-normal text-black text-[26px] tracking-[0] leading-[28px] sm:leading-[33px]">
+            {title}
+          </h4>
           <i className="icon" style={{ marginLeft: `${chevronRightMargin}px`, marginRight: `${chevronRightMargin}px` }}>
             <ChevronRight />
           </i>

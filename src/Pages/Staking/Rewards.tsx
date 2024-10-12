@@ -144,7 +144,7 @@ const Rewards: React.FC = () => {
 
   return (
     <PageLayout>
-      <div className="h-full w-full flex flex-col justify-center items-center mt-14 lg:mt-[128px]">
+      <div className="h-full w-full flex flex-col justify-center items-center sm:mt-14 lg:mt-[128px]">
         <PageTitle title={'Put your $MOONDOG to work'} subTitle="Stake, play and earn to become part of the legend" />
 
         {/* Rewards */}
