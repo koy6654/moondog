@@ -15,16 +15,16 @@ export default function GameWalletAndScore() {
 
   return (
     <PageLayout>
-      <div className="flex flex-col lg:flex-row justify-center items-center mt-[26px] mb-[60px]">
+      <div className="flex flex-col lg:flex-row justify-center items-center mt-[26px] mb-[60px] w-full md:w-auto">
         {/* 왼쪽: 검색 + 점수 */}
 
-        <div className="flex flex-col">
+        <div className="flex flex-col w-full justify-center items-center">
           {/* 검색 영역 */}
-          <div className="flex items-center w-[685px] ml-[10px]">
+          <div className="flex items-center w-full md:w-[685px] ml-[10px]">
             <input
               type="text"
               placeholder="Insert Your Wallet Address"
-              className="flex flex-[7] h-[74px] px-[58px] font-concert-one text-[26px] color-[rgba(0, 0, 0, 0.25)] flex-growpy-2 border-[3px] border-solid border-black rounded-l-full rounded-r-none"
+              className="w-full flex flex-[7] h-[74px] px-[58px] font-concert-one text-[26px] color-[rgba(0, 0, 0, 0.25)] flex-growpy-2 border-[3px] border-solid border-black rounded-l-full rounded-r-none"
             />
             <button className="flex flex-[3] h-[74px] justify-center items-center m-0 bg-[#F1D544] border-[3px] border-solid border-black rounded-r-full rounded-l-none rounded-full border-l-0 font-concert-one text-center text-[32px]">
               Search
@@ -33,7 +33,7 @@ export default function GameWalletAndScore() {
 
           {/* 점수 영역 */}
           <div
-            className="flex justify-between items-center w-[709px] h-[100px] relative px-[60px] py-[32px] mt-[7px]"
+            className="flex justify-between items-center w-full md:w-[709px] h-[100px] relative px-[20px] sm:px-[60px] py-[32px] mt-[7px]"
             style={{
               backgroundImage: `url(${GameShapeRectangle})`,
               backgroundSize: 'contain',
@@ -43,10 +43,10 @@ export default function GameWalletAndScore() {
           >
             <div className="flex justify-start items-center">
               <img src={Gem} alt="Gem" className="h-full mr-[13px]" />
-              <p className="font-concert-one text-left text-[32px]">My Score:</p>
+              <p className="font-concert-one text-left text-[20px] sm:text-[32px]">My Score:</p>
             </div>
             <div>
-              <span className="font-concert-one text-right text-[44px]">000,000</span>
+              <span className="font-concert-one text-right text-[30px] sm:text-[44px]">000,000</span>
             </div>
           </div>
         </div>
@@ -54,7 +54,7 @@ export default function GameWalletAndScore() {
         {/* 오른쪽: FAQ 버튼 */}
         <button
           onClick={handleButtonClick}
-          className="game-faq-button w-[225px] h-[180px] mt-[10px] lg:mt-0"
+          className="game-faq-button md:w-[225px] h-[180px] mt-[10px] lg:mt-0"
           // style={{
           //   backgroundImage: `url(${FaqButton})`,
           //   backgroundSize: 'contain',

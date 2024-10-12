@@ -29,7 +29,7 @@ export default function GameLeaderboard() {
   return (
     <PageLayout>
       {/* Leaderboard */}
-      <div className="w-[1000px] h-[526px] bg-[#FFFFFF] shadow-lg border-4 border-black p-8 mx-auto mb-[145px]">
+      <div className="w-full sm:w-[1000px] h-[526px] bg-[#FFFFFF] shadow-lg border-4 border-black p-8 mx-auto mb-[145px]">
         <div className="flex flex-col font-concert-one text-left text-base">
           <div className="flex flex-row justify-start items-center mb-4">
             <img src={LeaderboardIcon} alt="Leaderboard" className="w-[19px] h-full" />

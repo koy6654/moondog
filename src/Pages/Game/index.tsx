@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Playground from '../../Components/Playground';
 import GameArea from './GameArea';
 import GameLeaderboard from './GameLeaderboard';
@@ -5,6 +6,10 @@ import GameTitle from './GameTitle';
 import GameWalletAndScore from './GameWalletAndScore';
 
 const Staking: React.FC = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="h-full w-full overflow-auto bg-game-texture flex flex-col items-center">
       <Playground />
