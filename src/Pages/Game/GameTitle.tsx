@@ -12,7 +12,7 @@ const GameTitle: React.FC<PageTitleProps> = ({ title, subTitle }) => {
     <PageLayout>
       <div className="w-full h-full flex flex-col justify-center items-center mt-[10px] sm:mt-10 mb-[20px]">
         <p
-          className="font-comic-sans-ms text-center text-[25px] sm:text-[38px] font-normal leading-normal"
+          className="font-comic-sans-ms-bold font-bold text-center text-[25px] sm:text-[38px] font-normal leading-normal"
           style={{
             color: 'rgb(255, 255, 255)',
             fontWeight: 700,
@@ -37,7 +37,7 @@ const GameTitle: React.FC<PageTitleProps> = ({ title, subTitle }) => {
           />
           <div className="flex flex-col items-center justify-center label mx-[0px] sm:mx-[0px] md:mx-[20px] lg:mx-[30px]">
             <p
-              className="font-comic-sans-ms text-center text-[35px] sm:text-[38px] leading-[48px] sm:leading-[62px]"
+              className="font-comic-sans-ms-bold font-bold text-center text-[35px] sm:text-[38px] leading-[48px] sm:leading-[62px]"
               style={{
                 fontWeight: 900,
                 textShadow: `0px 4px 4px rgba(0, 0, 0, 0.25)`,
