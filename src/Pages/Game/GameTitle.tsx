@@ -12,7 +12,7 @@ const GameTitle: React.FC<PageTitleProps> = ({ title, subTitle }) => {
     <PageLayout>
       <div className="w-full h-full flex flex-col justify-center items-center mt-[10px] sm:mt-10 mb-[20px]">
         <p
-          className="font-comic-sans-ms-bold font-bold text-center text-[25px] sm:text-[38px] font-normal leading-normal"
+          className="font-comic-sans-ms-bold font-bold text-center text-[25px] sm:text-[38px] leading-normal"
           style={{
             color: 'rgb(255, 255, 255)',
             fontWeight: 700,
