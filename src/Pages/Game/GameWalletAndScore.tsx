@@ -15,38 +15,39 @@ export default function GameWalletAndScore() {
 
   return (
     <PageLayout>
-      <div className="flex flex-col lg:flex-row justify-center items-center mt-[26px] mb-[60px] w-full md:w-auto">
+      {/* 해상도 낮을때: col, 해상도 높을때: row */}
+      <div
+        className="flex flex-col w-full justify-center items-center mt-[26px] mb-[32px] sm:mb-[57px]
+        lg:flex-row
+        lg:space-x-4
+        lg:w-[79%] 
+        2xl:w-[54%]
+        xl:w-[64%]
+      "
+      >
         {/* 왼쪽: 검색 + 점수 */}
 
         <div className="flex flex-col w-full justify-center items-center">
           {/* 검색 영역 */}
-          <div className="flex items-center w-full md:w-[685px] ml-[10px]">
+          <div className="flex items-center w-full">
             <input
               type="text"
               placeholder="Insert Your Wallet Address"
-              className="w-full flex flex-[7] h-[74px] px-[58px] font-concert-one text-[26px] color-[rgba(0, 0, 0, 0.25)] flex-growpy-2 border-[3px] border-solid border-black rounded-l-full rounded-r-none"
+              className="w-full flex flex-[7] h-[60px] sm:h-[74px] px-[15px] sm:px-[40px] font-concert-one text-[15px] sm:text-[26px] color-[rgba(0, 0, 0, 0.25)] py-2 border-[3px] border-solid border-black rounded-l-full rounded-r-none"
             />
-            <button className="flex flex-[3] h-[74px] justify-center items-center m-0 bg-[#F1D544] border-[3px] border-solid border-black rounded-r-full rounded-l-none rounded-full border-l-0 font-concert-one text-center text-[32px]">
+            <button className="flex flex-[3] h-[60px] sm:h-[74px] justify-center items-center m-0 bg-[#F1D544] border-[3px] border-solid border-black rounded-r-full rounded-l-none rounded-full border-l-0 font-concert-one text-center text-[18px] sm:text-[32px]">
               Search
             </button>
           </div>
 
           {/* 점수 영역 */}
-          <div
-            className="flex justify-between items-center w-full md:w-[709px] h-[100px] relative px-[20px] sm:px-[60px] py-[32px] mt-[7px]"
-            style={{
-              backgroundImage: `url(${GameShapeRectangle})`,
-              backgroundSize: 'contain',
-              backgroundRepeat: 'no-repeat',
-              backgroundPosition: 'center',
-            }}
-          >
+          <div className="game-score-container flex justify-between items-center w-full h-[66px] sm:h-[96px] relative px-[20px] sm:px-[60px] mt-[6px]">
             <div className="flex justify-start items-center">
-              <img src={Gem} alt="Gem" className="h-full mr-[13px]" />
-              <p className="font-concert-one text-left text-[20px] sm:text-[32px]">My Score:</p>
+              <img src={Gem} alt="Gem" className="h-full mr-[5px] sm:mr-[13px]" />
+              <p className="font-concert-one text-left text-[22px] sm:text-[32px]">My Score:</p>
             </div>
             <div>
-              <span className="font-concert-one text-right text-[30px] sm:text-[44px]">000,000</span>
+              <span className="font-concert-one text-right text-[24px] sm:text-[44px]">000,000</span>
             </div>
           </div>
         </div>
@@ -54,7 +55,7 @@ export default function GameWalletAndScore() {
         {/* 오른쪽: FAQ 버튼 */}
         <button
           onClick={handleButtonClick}
-          className="game-faq-button md:w-[225px] h-[180px] mt-[10px] lg:mt-0"
+          className="game-faq-button w-[284px] h-[168px] mt-[10px] lg:mt-0"
           // style={{
           //   backgroundImage: `url(${FaqButton})`,
           //   backgroundSize: 'contain',
@@ -64,8 +65,8 @@ export default function GameWalletAndScore() {
         >
           <div className="flex flex-row lg:flex-col justify-center items-center">
             <Bulb className="mr-[5px] lg:mr-0" />
-            <span className="font-concert-one text-[24px] leading-tight ">Check out</span>
-            <span className="font-concert-one text-[37px] leading-tight">&nbsp;FAQ</span>
+            <span className="font-concert-one text-[22px] sm:text-[24px] leading-tight ">Check out</span>
+            <span className="font-concert-one text-[32px] sm:text-[37px] leading-tight">&nbsp;FAQ</span>
           </div>
         </button>
       </div>

@@ -128,6 +128,13 @@
   background-position: center;
 }
 
+.game-score-container {
+  background-image: url('../Assets/Images/GameShapeRectangle.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 @media (max-width: 1024px) {
   .game-faq-button {
     width: 100%;
@@ -140,11 +147,26 @@
     border-style: solid;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
   }
+  .game-score-container {
+    width: 100%;
+    background-image: none;
+    background-color: #fff;
+    border-radius: 32px;
+    border-width: 3px;
+    border-color: black;
+    border-style: solid;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+  }
+}
+@media (max-width: 640px) {
+  .game-faq-button {
+    height: 72px;
+  }
 }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .game-faq-button {
     width: 100%;
     max-width: 477px;
   }
-}
+} */
