@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PageLayout from '../../Components/PageLayout';
 import { ReactComponent as Bulb } from '../../Assets/Icons/Bulb.svg';
 import { useNavigate } from 'react-router-dom';
@@ -13,6 +13,26 @@ export default function GameWalletAndScore() {
     navigate('/#section-faq');
   };
 
+  const [score, setScore] = useState(0);
+  useEffect(() => {
+    // postMessage를 통해 게임 오버 상태를 받기 위한 이벤트 리스너
+    const handleMessage = (event: MessageEvent) => {
+      console.log(event);
+      if (event.data && event.data.status === 'gameOver') {
+        setScore(event.data.score);
+      }
+      if (event.data && event.data.status === 'gameStart') {
+        setScore(0);
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+
+    return () => {
+      window.removeEventListener('message', handleMessage);
+    };
+  }, []);
+
   return (
     <PageLayout>
       {/* 해상도 낮을때: col, 해상도 높을때: row */}
@@ -21,8 +41,8 @@ export default function GameWalletAndScore() {
         lg:flex-row
         lg:space-x-4
         lg:w-[79%] 
-        2xl:w-[54%]
         xl:w-[64%]
+        2xl:w-[790px]
       "
       >
         {/* 왼쪽: 검색 + 점수 */}
@@ -47,7 +67,7 @@ export default function GameWalletAndScore() {
               <p className="font-concert-one text-left text-[22px] sm:text-[32px]">My Score:</p>
             </div>
             <div>
-              <span className="font-concert-one text-right text-[24px] sm:text-[44px]">000,000</span>
+              <span className="font-concert-one text-right text-[24px] sm:text-[44px]">{score}</span>
             </div>
           </div>
         </div>
