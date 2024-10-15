@@ -2,34 +2,111 @@ import React, { useEffect, useState } from 'react';
 import PageLayout from '../../Components/PageLayout';
 import { ReactComponent as Bulb } from '../../Assets/Icons/Bulb.svg';
 import { useNavigate } from 'react-router-dom';
-import FaqButton from '../../Assets/Images/FaqButton.svg';
-import GameShapeRectangle from '../../Assets/Images/GameShapeRectangle.svg';
 import Gem from '../../Assets/Images/Gem.png';
+import axios from 'axios';
+import Alert, { AlertProps } from '../../Components/Alert';
+import { useRecoilState } from 'recoil';
+import { alertRecoil } from '../../State';
+import { useAccount } from 'wagmi';
+
+interface GetGamerInfoResponse {
+  errCode: number;
+  message: string;
+  score: number;
+}
 
 export default function GameWalletAndScore() {
   const navigate = useNavigate();
+
+  const { isConnected, address } = useAccount();
+
+  const [alert, setAlert] = useRecoilState<AlertProps>(alertRecoil);
+
+  const [score, setScore] = useState(0);
+  const [searchWalletAddress, setSearchWalletAddress] = useState('');
+
+  const handleSearchInputOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchWalletAddress(event.target.value);
+  };
+
+  const handleSearchOnClick = async () => {
+    if (searchWalletAddress === '' || searchWalletAddress == null) {
+      return;
+    }
+
+    try {
+      const { data: scoreData } = await axios.post<GetGamerInfoResponse>(
+        `${process.env.REACT_APP_API_DOMAIN}/api/GetGamerInfo`,
+        {
+          address: searchWalletAddress,
+        }
+      );
+
+      if (scoreData.errCode !== 0) {
+        setScore(0);
+        setAlert({ type: 'warning', message: 'Address not found' });
+        return;
+      }
+
+      setScore(scoreData.score);
+      setAlert({ type: 'success', message: 'Search wallet address done' });
+    } catch (error) {
+      console.error(error);
+      setScore(0);
+      setAlert({ type: 'error', message: 'Search wallet address failed' });
+    }
+  };
 
   const handleButtonClick = () => {
     navigate('/#section-faq');
   };
 
-  const [score, setScore] = useState(0);
-  useEffect(() => {
-    // postMessage를 통해 게임 오버 상태를 받기 위한 이벤트 리스너
-    const handleMessage = (event: MessageEvent) => {
-      console.log(event);
-      if (event.data && event.data.status === 'gameOver') {
-        setScore(event.data.score);
-      }
-      if (event.data && event.data.status === 'gameStart') {
-        setScore(0);
-      }
-    };
+  const handleGameScore = async (event: MessageEvent) => {
+    if (event.origin !== window.location.origin) return;
 
-    window.addEventListener('message', handleMessage);
+    let gameScore = 0;
+
+    if (event.data && event.data.status === 'gameStart') {
+      gameScore = 0;
+    }
+    if (event.data && event.data.status === 'gameOver') {
+      gameScore = event.data.score;
+    }
+
+    await postGameScore(gameScore);
+  };
+
+  const postGameScore = async (score: number) => {
+    if (score === 0 || score == null) {
+      return;
+    }
+
+    if (isConnected === false || address == null) {
+      return;
+    }
+
+    try {
+      await axios.post<GetGamerInfoResponse>(`${process.env.REACT_APP_API_DOMAIN}/api/SetScore`, {
+        address: address,
+        score,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setAlert({ type: null, message: '' });
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, [alert]);
+
+  useEffect(() => {
+    window.addEventListener('message', handleGameScore);
 
     return () => {
-      window.removeEventListener('message', handleMessage);
+      window.removeEventListener('message', handleGameScore);
     };
   }, []);
 
@@ -54,8 +131,13 @@ export default function GameWalletAndScore() {
               type="text"
               placeholder="Insert Your Wallet Address"
               className="w-full flex flex-[7] h-[60px] sm:h-[74px] px-[15px] sm:px-[40px] font-concert-one text-[15px] sm:text-[26px] color-[rgba(0, 0, 0, 0.25)] py-2 border-[3px] border-solid border-black rounded-l-full rounded-r-none"
+              onChange={handleSearchInputOnChange}
+              value={searchWalletAddress}
             />
-            <button className="flex flex-[3] h-[60px] sm:h-[74px] justify-center items-center m-0 bg-[#F1D544] border-[3px] border-solid border-black rounded-r-full rounded-l-none rounded-full border-l-0 font-concert-one text-center text-[18px] sm:text-[32px]">
+            <button
+              className="flex flex-[3] h-[60px] sm:h-[74px] justify-center items-center m-0 bg-[#F1D544] border-[3px] border-solid border-black rounded-r-full rounded-l-none rounded-full border-l-0 font-concert-one text-center text-[18px] sm:text-[32px]"
+              onClick={handleSearchOnClick}
+            >
               Search
             </button>
           </div>
@@ -90,6 +172,7 @@ export default function GameWalletAndScore() {
           </div>
         </button>
       </div>
+      <Alert type={alert.type} message={alert.message} />
     </PageLayout>
   );
 }
