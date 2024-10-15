@@ -64,16 +64,27 @@ export default function GameWalletAndScore() {
   const handleGameScore = async (event: MessageEvent) => {
     if (event.origin !== window.location.origin) return;
 
-    let gameScore = 0;
-
     if (event.data && event.data.status === 'gameStart') {
-      gameScore = 0;
+      await postGameStart();
     }
     if (event.data && event.data.status === 'gameOver') {
-      gameScore = event.data.score;
+      const gameScore = event.data.score;
+      await postGameScore(gameScore);
+    }
+  };
+
+  const postGameStart = async () => {
+    if (isConnected === false || address == null) {
+      return;
     }
 
-    await postGameScore(gameScore);
+    try {
+      await axios.post<GetGamerInfoResponse>(`${process.env.REACT_APP_API_DOMAIN}/api/SetStart`, {
+        address: address,
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const postGameScore = async (score: number) => {
